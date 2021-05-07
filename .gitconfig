@@ -1,0 +1,11 @@
+[user]
+	email = xbelanch@protonmail.com
+	name = Xavier Belanche
+[merge]
+	conflictStyle = diff3
+[magit]
+	hideCampaign = true
+[alias]
+	tree = log --graph --decorate --pretty=online --abbrev-commit --all
+[init]
+	defaultBranch = main
