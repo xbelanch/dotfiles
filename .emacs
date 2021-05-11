@@ -65,7 +65,7 @@
 ;;; copypasta from https://www.reddit.com/r/emacs/comments/99e49n/displaylinenumbersmode_relative_line_numbers/
 (setq-default display-line-numbers-type 'visual
               display-line-numbers-current-absolute t
-              display-line-numbers-width 4
+              display-line-numbers-width 0
               display-line-numbers-widen t)
 ;; (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
