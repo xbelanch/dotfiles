@@ -3,6 +3,8 @@
 ;;; Tsoding Package manager
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (defvar rc/package-contents-refreshed nil)
 
@@ -39,7 +41,7 @@
 (defun rc/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Consolas-13")
-   ((eq system-type 'gnu/linux) "Ubuntu Mono-16")))
+   ((eq system-type 'gnu/linux) "Ubuntu Mono-20")))
 
 (add-to-list 'default-frame-alist `(font . ,(rc/get-default-font)))
 
@@ -84,9 +86,11 @@
               visible-bell (equal system-type 'windows-nt))
 
 ;;; Set Theme
-(rc/require-theme 'solarized)
+;; (rc/require-theme 'solarized)
+;; (load-theme 'solarized-dark t)
+(rc/require-theme 'gruber-darker)
+(load-theme 'gruber-darker t)
 ;;; TODO: This must be included on require-theme funtion
-(load-theme 'solarized-dark t)
 
 ;;; Change all prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -238,10 +242,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(electric-pair-mode t)
  '(blink-cursor-blinks 0)
  '(custom-safe-themes
    '("e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
+ '(electric-pair-mode t)
  '(package-selected-packages '(zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
