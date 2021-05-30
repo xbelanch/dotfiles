@@ -1,10 +1,8 @@
 (package-initialize)
 
-;;; Tsoding Package manager
+;;; @tsoding Package manager
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (defvar rc/package-contents-refreshed nil)
 
@@ -86,10 +84,15 @@
               visible-bell (equal system-type 'windows-nt))
 
 ;;; Set Theme
+;; Solarized
 ;; (rc/require-theme 'solarized)
 ;; (load-theme 'solarized-dark t)
-(rc/require-theme 'gruber-darker)
-(load-theme 'gruber-darker t)
+;; Gruber
+;; (rc/require-theme 'gruber-darker)
+;; (load-theme 'gruber-darker t)
+
+(rc/require-theme 'gruvbox)
+(load-theme 'gruvbox-dark-hard t)
 ;;; TODO: This must be included on require-theme funtion
 
 ;;; Change all prompts to y or n
@@ -218,6 +221,12 @@
  'ag
  'typescript-mode
  )
+
+;;; Colorful man
+;;; stolen from: https://emacs.stackexchange.com/questions/14245/is-there-a-way-to-view-the-man-pages-in-color-in-emacs
+(require 'man)
+(set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
+(set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
 
 ;;; Custom scratch message
 (defun my-scratch-message ()
