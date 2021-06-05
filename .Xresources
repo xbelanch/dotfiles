@@ -5,7 +5,8 @@ Xft.hintstyle:  hintmedium
 
 URxvt.termName: rxvt
 URxvt.depth: 32
-URxvt.transparent: false
+URxvt.transparent: true
+URxvt.shading: 30
 URxvt.font: xft:Ubuntu Mono:size=18
 URxvt.scrollBar: false
 
