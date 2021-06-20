@@ -1,1 +1,14 @@
 *~
+.config/blender/*
+.config/cmus/*
+.config/dconf/*
+.config/hardinfo/*
+.config/lpass/*
+.config/mps-youtube/*
+.config/mpv/*
+.config/obs-studio/*
+.config/yay/*
+.config/QtProject.conf
+.config/mypaint/*
+.config/pulse/*
+.config/qutebrowser/*
