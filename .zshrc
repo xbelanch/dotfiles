@@ -8,7 +8,11 @@ export ZSH="/home/rotter/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="mh"
+# git clone https://github.com/dracula/zsh.git to install dracula theme
+ZSH_THEME="dracula"
+DRACULA_DISPLAY_TIME=1
+DRACULA_DISPLAY_CONTEXT=1
+DRACULA_ARROW_ICON="λ"
 unsetopt BEEP
 
 # Set list of themes to pick from when loading at random
@@ -81,8 +85,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH
-export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH=/usr/local/texlive/2021/texmf-dist/doc/man:$MANPATH
+export MANPATH=/usr/local/texlive/2021/texmf-dist/doc/man:/usr/local/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH
 
 # You may need to manually set your language environment
@@ -106,3 +109,4 @@ export LANG=ca_ES.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source $HOME/.aliases
