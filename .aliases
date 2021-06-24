@@ -42,3 +42,7 @@ alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo pacman -Syyuu && yay'
+
+# The Silver Searcher
+# Tip stolen from https://github.com/ggreer/the_silver_searcher/issues/24
+alias ag='ag --hidden --ignore .git'

@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+ ;;; -*- lexical-binding: t; -*-
 
 ;;; This is me!
 (setq user-full-name "Xavier Belanche Alonso"
@@ -115,6 +115,9 @@
 ;;; ===================
 ;;;
 
+;;; Multiple cursors
+(tsoding/require 'multiple-cursors)
+
 ;;; Move Text
 (tsoding/require 'move-text)
 
@@ -126,8 +129,9 @@
 (ido-ubiquitous-mode 1)
 
 ;;; Helm
-(tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git)
+(tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git 'helm-ag)
 (setq helm-ff-transformer-show-only-basename nil)
+(setq helm-ag-base-command "ag --literal --line-number --column --smart-case --stats --hidden --nogroup --ignore .git")
 
 ;;; Dired
 (require 'dired-x)
@@ -185,6 +189,32 @@
 (setq yas/triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.snippets/"))
 (yas-global-mode 1)
+
+;;;
+;;; Programming Languages
+;;; =====================
+;;;
+
+;;; CC-Mode
+(setq-default c-basic-offset 4)
+(add-hook 'c-mode-hook (lambda ()
+                         (interactive)
+                         (c-toggle-comment-style -1)))
+;;; GDB
+(setq gdb-many-windows t
+      gdb-show-main t)
+
+;;; Packages that don't require configuration
+(tsoding/require
+ 'yaml-mode
+ 'glsl-mode
+ 'lua-mode
+ 'graphviz-dot-mode
+ 'markdown-mode
+ 'olivetti
+ 'typescript-mode
+ )
+
 
 ;;;
 ;;; Default global values
@@ -251,7 +281,12 @@
 (global-set-key (kbd "C-c h r") 'helm-recentf)
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
-
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -264,57 +299,17 @@
   (setq initial-scratch-message  ";;|-----------|\n;;| This      |\n;;| is        |\n;;| not       |\n;;| a         |\n;;| Scratch   |\n;;|-----------|\n;;(\\__/) ||\n;;(•ㅅ•) ||\n;;/ 　 づ\n\n"))
 (add-hook 'after-init-hook #'my-scratch-message t)
 
-;; ;;; c-mode
-;; (setq-default c-basic-offset 4
-;;               c-default-style '((java-mode . "java")
-;;                                 (awk-mode . "awk")
-;;                                 (other . "bsd")))
-;; (add-hook 'c-mode-hook (lambda ()
-;;                          (interactive)
-;;                          (c-toggle-comment-style -1)))
-
-
-
-
-;; ;;; Packages that don't require configuration
-;; (tsoding/require
-;;  'yaml-mode
-;;  'glsl-mode
-;;  'lua-mode
-;;  'graphviz-dot-mode
-;;  'markdown-mode
-;;  'olivetti
-;;  'ag
-;;  'typescript-mode
-;;  )
-
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(blink-cursor-blinks 0)
-;;  '(custom-safe-themes
-;;    '("e6df46d5085fde0ad56a46ef69ebb388193080cc9819e2d6024c9c6e27388ba9" default))
-;;  '(electric-pair-mode t)
-;;  '(package-selected-packages '(zenburn-theme)))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-space ((t (:foreground "gray75" :background))))
+ '(whitespace-trailing ((t (:foreground "red" :background "yellow")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(simple rainbow-delimiters ace-window ag anzu company dash-functional glsl-mode graphviz-dot-mode helm ido-completing-read+ lua-mode magit markdown-mode move-text olivetti smex solarized-theme typescript-mode yaml-mode yasnippet)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-space ((t (:bold t :foreground "gray75" :background))))
- '(whitespace-trailing ((t (:foreground "red" :background "yellow")))))
+   '(helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
