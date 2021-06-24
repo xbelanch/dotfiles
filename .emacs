@@ -197,8 +197,8 @@
 (yas-global-mode 1)
 
 ;;;
-;;; Programming Languages
-;;; =====================
+;;; Programming and Markup Languages
+;;; ================================
 ;;;
 
 ;;; CC-Mode
@@ -210,6 +210,12 @@
 (setq gdb-many-windows t
       gdb-show-main t)
 
+;;; Markdown/GFM
+(tsoding/require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
 ;;; Packages that don't require configuration
 (tsoding/require
  'js2-mode
@@ -219,11 +225,9 @@
  'glsl-mode
  'lua-mode
  'graphviz-dot-mode
- 'markdown-mode
  'olivetti
  'typescript-mode
  )
-
 
 ;;;
 ;;; Default global values
@@ -323,4 +327,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(nasm-mode js2-mode olivetti-mode emmet-mode js2 helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
+   '(gfm-mode nasm-mode js2-mode olivetti-mode emmet-mode js2 helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
