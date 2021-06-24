@@ -72,21 +72,28 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-;;; Set Theme
-(tsoding/require-theme 'dracula)
-(load-theme 'dracula t)
-(setq dracula-enlarge-headings nil)
-(setq dracula-height-title-1 1.35)
-(setq dracula-height-title-1 1.25)
-(setq dracula-height-title-1 1.15)
-(setq dracula-height-doc-title 1.4)
-(setq dracula-alternate-mode-line-and-minibuffer t)
+;;; Set Zenburn Theme
+(tsoding/require-theme 'zenburn)
+(load-theme 'zenburn t)
 
 ;;; Ace-window manager
 (tsoding/require 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq aw-background nil)
 
+;;; Display relative line numbers
+(setq display-line-numbers-type 'relative)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+;;; Visual goodie for delimiters
+(tsoding/require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;; Display white spaces and white trailing spaces
+(tsoding/require 'whitespace)
+(whitespace-mode 1)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq whitespace-style '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))
 
 ;;;
 ;;; Default global values
@@ -115,7 +122,6 @@
               display-time-mode 1
               show-paren-mode 1
               visible-bell nil) ;; No flashing, please.
-
 
 ;; Stolen again from @tsoding:
 ;; https://github.com/rexim/dotfiles/blob/master/.emacs.tsoding/misc-rc.el#L120
@@ -148,7 +154,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; (setq-default display-line-numbers-type (quote relative))
-;; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
 
 ;; ;;; Whitespace style
 ;; (setq whitespace-style '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))
@@ -328,10 +334,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yasnippet yaml-mode typescript-mode solarized-theme smex olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm gruvbox-theme gruber-darker-theme graphviz-dot-mode glsl-mode dash-functional company anzu ag ace-window)))
+   '(simple rainbow-delimiters ace-window ag anzu company dash-functional glsl-mode graphviz-dot-mode helm ido-completing-read+ lua-mode magit markdown-mode move-text olivetti smex solarized-theme typescript-mode yaml-mode yasnippet)))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(whitespace-space ((t (:bold t :foreground "gray75" :background))))
+ '(whitespace-trailing ((t (:foreground "red" :background "yellow")))))
