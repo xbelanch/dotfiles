@@ -10,15 +10,14 @@
 ;;; Defer garbage collection
 (setq gc-cons-threshold 100000000)
 
-
-(package-initialize)
-
 ;;;
 ;;; Package Manager
 ;;; ===============
 ;;;
 ;;; Stolen from the @tsoding Package Manager
 ;;; from: https://github.com/rexim/dotfiles/blob/master/.emacs.rc/rc.el
+
+(package-initialize)
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -116,6 +115,9 @@
 ;;; ===================
 ;;;
 
+;;; Move Text
+(tsoding/require 'move-text)
+
 ;;; Ido everywhere
 (tsoding/require 'smex 'ido-completing-read+)
 (require 'ido-completing-read+)
@@ -127,11 +129,43 @@
 (tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git)
 (setq helm-ff-transformer-show-only-basename nil)
 
+;;; Dired
+(require 'dired-x)
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^\\..+$"))
+(setq-default dired-dwim-target t)
+(setq dired-listing-switches "-alh")
+
+;;; Custom function for duplicate files on Dired
+;;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
+(defun dired-duplicate-this-file ()
+  "Duplicate file on this line."
+  (interactive)
+  (let* ((this  (dired-get-filename t))
+         (ctr   1)
+         (new   (format "%s Copy" this)))
+    (while (file-exists-p new)
+      (setq ctr  (1+ ctr)
+            new  (format "%s Copy (%d)" this ctr)))
+     (dired-copy-file this new nil))
+  (revert-buffer))
 
 ;;;
 ;;; Programming Helpers
 ;;; ===================
 ;;;
+
+;;; Magit everywhere
+(tsoding/require 'magit)
+(setq magit-auto-revert-mode nil)
+
+;;; Colorize compilation output
+(require 'ansi-color)
+(defun tsoding/colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'tsoding/colorize-compilation-buffer)
 
 ;;; Smartparens
 (tsoding/require 'smartparens)
@@ -156,7 +190,6 @@
 ;;; Default global values
 ;;; =====================
 ;;;
-(require 'ansi-color)
 
 (setq-default inhibit-splash-screen t
               inhibit-startup-message t
@@ -216,6 +249,9 @@
 (global-set-key (kbd "C-c h g l") 'helm-ls-git-ls)
 (global-set-key (kbd "C-c h f") 'helm-find)
 (global-set-key (kbd "C-c h r") 'helm-recentf)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
+
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -228,79 +264,6 @@
   (setq initial-scratch-message  ";;|-----------|\n;;| This      |\n;;| is        |\n;;| not       |\n;;| a         |\n;;| Scratch   |\n;;|-----------|\n;;(\\__/) ||\n;;(•ㅅ•) ||\n;;/ 　 づ\n\n"))
 (add-hook 'after-init-hook #'my-scratch-message t)
 
-
-
-;; ;;; Some helpers
-
-
-
-
-
-;; (setq-default display-line-numbers-type (quote relative))
-
-
-;; ;;; Whitespace style
-;; (setq whitespace-style '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; ;;; Set Default values
-;; (setq-default inhibit-splash-screen t
-;;               make-backup-files nil
-;;               tab-width 4
-;;               indent-tabs-mode nil
-;;               compilation-scroll-output t
-;;               compilation-environment '("LANG=C")
-;;               visible-bell (equal system-type 'windows-nt))
-
-
-
-;; ;;; Change all prompts to y or n
-;; (fset 'yes-or-no-p 'y-or-n-p)
-
-;; ;;; Duplicate lines
-;; (defun tsoding/duplicate-line ()
-;;   "Duplicate current line"
-;;   (interactive)
-;;   (move-beginning-of-line 1)
-;;   (kill-line)
-;;   (yank)
-;;   (newline)
-;;   (yank))
-;; (global-set-key (kbd "C-,") 'tsoding/duplicate-line)
-
-;; ;;; Default Encoding
-;; (prefer-coding-system 'utf-8)
-;; (set-default-coding-systems 'utf-8)
-;; (set-selection-coding-system 'utf-8)
-;; (if (eq system-type 'windows-nt)
-;;     (set-clipboard-coding-system 'utf-16le-dos)
-;;   (set-clipboard-coding-system 'utf-8))
-
-
-;; ;;; Anzu
-;; (tsoding/require 'anzu)
-;; (global-anzu-mode 1)
-;; (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
-
-;; ;;; Colorize compilation output
-;; (require 'ansi-color)
-;; (defun tsoding/colorize-compilation-buffer ()
-;;   (toggle-read-only)
-;;   (ansi-color-apply-on-region compilation-filter-start (point))
-;;   (toggle-read-only))
-;; (add-hook 'compilation-filter-hook 'tsoding/colorize-compilation-buffer)
-
-;; ;;; Whitespace mode
-;; (defun tsoding/set-up-whitespace-handling ()
-;;   (interactive)
-;;   (whitespace-mode 1)
-;;   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
-
-;; (add-hook 'c-mode-hook 'tsoding/set-up-whitespace-handling)
-;; (add-hook 'c++-mode-hook 'tsoding/set-up-whitespace-handling)
-;; (add-hook 'markdown-mode-hook 'tsoding/set-up-whitespace-handling)
-;; (add-hook 'yaml-mode-hook 'tsoding/set-up-whitespace-handling)
-
 ;; ;;; c-mode
 ;; (setq-default c-basic-offset 4
 ;;               c-default-style '((java-mode . "java")
@@ -310,48 +273,8 @@
 ;;                          (interactive)
 ;;                          (c-toggle-comment-style -1)))
 
-;; ;;; Magit everywhere
-;; (tsoding/require 'magit)
-;; (setq magit-auto-revert-mode nil)
-
-;; ;;; dired
-;; (require 'dired-x)
-;; (setq dired-omit-files
-;;       (concat dired-omit-files "\\|^\\..+$"))
-;; (setq-default dired-dwim-target t)
-;; (setq dired-listing-switches "-alh")
-
-;; (defun dired-duplicate-this-file ()
-;;   "Duplicate file on this line"
-;;   (interactive)
-;;   (let* ((this (dired-get-filename t))
-;;          (ctr 1)
-;;          (new (format "%s[%d]" this ctr)))
-;;     (while (file-exists-p new)
-;;       (setq ctr (1+ ctr)
-;;             new (format "%s[%d]" this ctr)))
-;;     (dired-copy-file this new nil))
-;;   (revert-buffer))
 
 
-;; ;;; helm
-;; (tsoding/require 'helm)
-;; (setq helm-ff-transformer-show-only-basename nil)
-;; (global-set-key (kbd "C-c h f") 'helm-find)
-;; (global-set-key (kbd "C-c h r") 'helm-recentf)
-
-
-;; ;;; word-wrap
-;; (defun tsoding/enable-word-wrap ()
-;;   (interactive)
-;;   (toggle-word-wrap 1))
-;; (add-hook 'markdown-mode-hook 'tsoding/enable-word-wrap)
-
-
-;; ;;; Move Text
-;; (tsoding/require 'move-text)
-;; (global-set-key (kbd "M-p") 'move-text-up)
-;; (global-set-key (kbd "M-n") 'move-text-down)
 
 ;; ;;; Packages that don't require configuration
 ;; (tsoding/require
