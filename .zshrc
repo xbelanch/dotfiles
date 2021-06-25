@@ -135,7 +135,9 @@ fi
 # Stolen from: https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2/
 if [ $WSLVER -eq 2 ] && [ "$WSL" = "yes" ]; then
 	echo "You're running Linux under WSL-$WSLVER"
-    echo "We need to "
+    echo "Set up X11 display forwarding and adjust GDK Scale"
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=1
+    export GDK_SCALE=1
+    export GDK_DPI_SCALE=1
 fi
