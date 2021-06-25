@@ -1,13 +1,14 @@
-Xft.dpi:    96
+Xft.dpi:    110
+Xft.autohint: 0
 Xft.antialias:  1
 Xft.hinting:    1
-Xft.hintstyle:  hintmedium
+Xft.hintstyle:  hintfull
 
 URxvt.termName: rxvt
 URxvt.depth: 32
 URxvt.transparent: true
 URxvt.shading: 30
-URxvt.font: xft:Ubuntu Mono:size=18
+URxvt.font: xft:Ubuntu Mono:size=16
 URxvt.scrollBar: false
 
 URxvt*depth: 32
