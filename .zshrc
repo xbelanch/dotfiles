@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rotter/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -89,7 +89,12 @@ export MANPATH=/usr/local/texlive/2021/texmf-dist/doc/man:/usr/local/man:$MANPAT
 export INFOPATH=/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH
 
 # You may need to manually set your language environment
-export LANG=ca_ES.UTF-8
+export LANG="ca_ES.UTF-8"
+export LC_ALL=
+export LANGUAGE=
+export C_CTYPE=
+export LC_NUMERIC=
+export LC_TIME=
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -110,3 +115,27 @@ export LANG=ca_ES.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
+
+# Check first if you're running under WSL2
+# Stolen from: https://github.com/microsoft/WSL/issues/4555#issuecomment-711091232
+export WSL=no WSLVER=""
+if [[ "$(< /proc/version)" = *[Mm]icrosoft* ]]; then
+  WSL=yes
+  if [[ -e "/proc/config.gz" ]]; then WSLVER+="2"; else WSLVER+="1"; fi
+  if [[ -e "/dev/vsock" ]];      then WSLVER+="2"; else WSLVER+="1"; fi
+  if [[ -n "$WSL_INTEROP" ]];    then WSLVER+="2"; else WSLVER+="1"; fi
+  if [[ -d "/run/WSL" ]];        then WSLVER+="2"; else WSLVER+="1"; fi
+  if [[ -n "${WSLVER//1/}" && -n "${WSLVER//2/}" ]]; then
+    echo "WSL version detection got multiple answers ($WSLVER), time to update this code!"
+  fi
+  WSLVER="${WSLVER:0:1}"
+fi
+
+# If WSL2 is true, set up X11 display forwarding on WSL2
+# Stolen from: https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2/
+if [ $WSLVER -eq 2 ] && [ "$WSL" = "yes" ]; then
+	echo "You're running Linux under WSL-$WSLVER"
+    echo "We need to "
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export LIBGL_ALWAYS_INDIRECT=1
+fi
