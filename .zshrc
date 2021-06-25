@@ -118,7 +118,7 @@ source $HOME/.aliases
 
 # Check first if you're running under WSL2
 # Stolen from: https://github.com/microsoft/WSL/issues/4555#issuecomment-711091232
-export WSL=no WSLVER=""
+export WSL=no WSLVER=0
 if [[ "$(< /proc/version)" = *[Mm]icrosoft* ]]; then
   WSL=yes
   if [[ -e "/proc/config.gz" ]]; then WSLVER+="2"; else WSLVER+="1"; fi
