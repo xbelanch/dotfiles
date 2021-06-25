@@ -118,7 +118,7 @@ source $HOME/.aliases
 
 # Check first if you're running under WSL2
 # Stolen from: https://github.com/microsoft/WSL/issues/4555#issuecomment-711091232
-export WSL=no WSLVER=0
+export WSL=no WSLVER=""
 if [[ "$(< /proc/version)" = *[Mm]icrosoft* ]]; then
   WSL=yes
   if [[ -e "/proc/config.gz" ]]; then WSLVER+="2"; else WSLVER+="1"; fi
@@ -133,7 +133,7 @@ fi
 
 # If WSL2 is true, set up X11 display forwarding on WSL2
 # Stolen from: https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2/
-if [ $WSLVER -eq 2 ] && [ "$WSL" = "yes" ]; then
+if [ $WSLVER = "2" ] && [ "$WSL" = "yes" ]; then
 	echo "You're running Linux under WSL-$WSLVER"
     echo "Set up X11 display forwarding and adjust GDK Scale"
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
