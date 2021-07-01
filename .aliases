@@ -41,10 +41,10 @@ alias ls="command ls -l ${colorflag}"
 alias week='date +%V'
 
 # Get Arch or Debian updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='./.update-system-packages.sh'
+alias update='/home/$(whoami)/.update-system-packages.sh'
 
 # Setup screen and network at Bunker home
-alias bunker-setup='./.setup-bunker-t440p.sh'
+alias bunker-setup='/home/$(whoami)/.setup-bunker-t440p.sh'
 
 # The Silver Searcher
 # Tip stolen from https://github.com/ggreer/the_silver_searcher/issues/24
