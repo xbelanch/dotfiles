@@ -8,10 +8,15 @@ upgrade_arch_system() {
     printf "...Done upgrading the system\n"
 }
 
+upgrade_debian_system() {
+    printf "\nUpgrading Debian system with Apt...\n"
+    sudo apt-get update && sudo apt-get -y upgrade
+    printf "...Done upgrading the system\n"
+}
+
 if [ -f "/etc/arch-release" ]; then
     upgrade_arch_system
     npm outdated -g
 else
-    echo "Debian update packages"
-    sudo apt-get update && sudo apt-get -y upgrade && npm outdated -g
+    upgrade_debian_system
 fi
