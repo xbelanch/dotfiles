@@ -309,7 +309,7 @@
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 (global-set-key (kbd "C-c C-r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "M-SPC") 'avy-goto-char-timer)
-(global-set-key (kbd "M-w") 'last-woman-standing)
+(global-set-key (kbd "C-c m") 'last-woman-standing)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
