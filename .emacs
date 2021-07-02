@@ -160,6 +160,13 @@
      (dired-copy-file this new nil))
   (revert-buffer))
 
+;;; Make man replace the same buffer
+;;; Stolen from: https://emacs.stackexchange.com/questions/45174/how-to-make-man-replace-the-same-buffer
+(defun last-woman-standing ()
+  (interactive)
+  (kill-matching-buffers "^\*WoMan .*\*" nil t)
+  (call-interactively #'woman))
+
 ;;;
 ;;; Programming Helpers
 ;;; ===================
@@ -302,6 +309,7 @@
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 (global-set-key (kbd "C-c C-r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "M-SPC") 'avy-goto-char-timer)
+(global-set-key (kbd "M-w") 'last-woman-standing)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
