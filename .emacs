@@ -115,6 +115,9 @@
 ;;; ===================
 ;;;
 
+;;; Mwim
+(tsoding/require 'mwim)
+
 ;;; Avy
 (tsoding/require 'avy)
 
@@ -310,6 +313,8 @@
 (global-set-key (kbd "C-c C-r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "M-SPC") 'avy-goto-char-timer)
 (global-set-key (kbd "C-c m") 'last-woman-standing)
+(global-set-key (kbd "C-a") 'mwim-beginning)
+(global-set-key (kbd "C-e") 'mwim-end)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -335,4 +340,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gfm-mode nasm-mode js2-mode olivetti-mode emmet-mode js2 helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
+   '(mwim gfm-mode nasm-mode js2-mode olivetti-mode emmet-mode js2 helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
