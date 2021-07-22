@@ -345,4 +345,39 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(csharp-mode mwim gfm-mode nasm-mode js2-mode olivetti-mode emmet-mode js2 helm-ag smartparens helm-ls-git helm-git-grep helm-cmd-t multiple-cursors zenburn-theme yasnippet yaml-mode typescript-mode solarized-theme smex rainbow-delimiters olivetti move-text markdown-mode magit lua-mode ido-completing-read+ helm graphviz-dot-mode glsl-mode dash-functional company anzu ace-window)))
+   '(
+     ace-window
+     ag
+     anzu
+     company
+     csharp-mode
+     dash-functional
+     emmet-mode js2
+     gfm-mode
+     glsl-mode
+     graphviz-dot-mode
+     helm
+     helm-ag
+     helm-cmd-t
+     helm-git-grep
+     helm-ls-git
+     ido-completing-read+
+     js2-mode
+     lua-mode
+     magit
+     markdown-mode
+     move-text
+     multiple-cursors
+     mwim
+     nasm-mode
+     olivetti
+     olivetti-mode
+     rainbow-delimiters
+     smartparens
+     smex
+     solarized-theme
+     typescript-mode
+     yaml-mode
+     yasnippet
+     zenburn-theme
+     )))
