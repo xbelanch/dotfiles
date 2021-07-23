@@ -110,6 +110,8 @@
 ;;; Set the cursor as a box
 (set-cursor-color "#ffff00")
 
+;;; You can use M-y after C-y to insert previous item from the kill ring, or use browse-kill-ring package.
+(delete-region (point) (line-end-position))
 ;;;
 ;;; Emacs Helpers
 ;;; ===================
