@@ -4,9 +4,14 @@
 # expand-env: ((yas-indent-line 'fixed))
 # --
 CC=gcc
-CFLAGS=-Wall -Wextra -std=c11 -pedantic -g
+CFLAGS=-Wall -Wextra -std=c11 -pedantic -ggdb
 LIBS=
 INPUT=
 
+.PHONY: test
+
+test: $1 $(INPUT)
+	./$1 $(INPUT)
+
 $1: $2
-    $(CC) $(CFLAGS) -o $1 $2 $(LIBS)
+	$(CC) $(CFLAGS) -o $1 $2 $(LIBS)
