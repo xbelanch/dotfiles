@@ -72,6 +72,13 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 
+;;; Compile buffer to show in a vertical buffer
+;;; From: https://stackoverflow.com/questions/4157147/compile-buffer-to-show-in-a-vertical-buffer
+(defadvice compile (around split-horizontally activate)
+  (let ((split-width-threshold 0)
+        (split-height-threshold nil))
+    ad-do-it))
+
 ;;; Show buffer filename on title bar
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -346,40 +353,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
  '(package-selected-packages
-   '(
-     ace-window
-     ag
-     anzu
-     company
-     csharp-mode
-     dash-functional
-     emmet-mode js2
-     gfm-mode
-     glsl-mode
-     graphviz-dot-mode
-     helm
-     helm-ag
-     helm-cmd-t
-     helm-git-grep
-     helm-ls-git
-     ido-completing-read+
-     js2-mode
-     lua-mode
-     magit
-     markdown-mode
-     move-text
-     multiple-cursors
-     mwim
-     nasm-mode
-     olivetti
-     olivetti-mode
-     rainbow-delimiters
-     smartparens
-     smex
-     solarized-theme
-     typescript-mode
-     yaml-mode
-     yasnippet
-     zenburn-theme
-     )))
+   '(ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
