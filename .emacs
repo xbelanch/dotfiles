@@ -154,7 +154,10 @@
 ;;; Helm
 (tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git 'helm-ag)
 (setq helm-ff-transformer-show-only-basename nil)
-(setq helm-ag-base-command "ag --literal --line-number --column --smart-case --stats --hidden --nogroup --ignore .git")
+(setq helm-ag-base-command "ag --nocolor --ignore-case --literal --line-number --column --stats --hidden --nogroup --ignore .git")
+(setq helm-ag-command-option "--all-text")
+(setq helm-ag-insert-at-point 'symbol)
+(setq helm-ag-ignore-buffer-patterns '("\\.txt\\'" "\\.mkd\\'"))
 
 ;;; Dired
 (require 'dired-x)
@@ -353,6 +356,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
+  '(org-agenda-files '("/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
  '(package-selected-packages
    '(ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
