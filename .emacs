@@ -117,6 +117,12 @@
 ;;; Set the cursor as a box
 (set-cursor-color "#ffff00")
 
+;;; Set font size to minibuffer
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+(defun my-minibuffer-setup ()
+       (set (make-local-variable 'face-remapping-alist)
+          '((default :height 1.25))))
+
 ;;; You can use M-y after C-y to insert previous item from the kill ring, or use browse-kill-ring package.
 (delete-region (point) (line-end-position))
 ;;;
