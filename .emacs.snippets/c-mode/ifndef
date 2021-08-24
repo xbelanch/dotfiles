@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
 # name: ifndef
-# key: ifndef
+# key: def
 # --
-#ifnedef $1
+#ifndef $1
 #define $1
 
 #endif
