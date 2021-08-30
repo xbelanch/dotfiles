@@ -57,7 +57,8 @@
 (defun tsoding/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Consolas-13")
-   ((eq system-type 'gnu/linux) "Ubuntu Mono-18")))
+   ;; ((eq system-type 'gnu/linux) "Ubuntu Mono-18")))
+   ((eq system-type 'gnu/linux) "JuliaMono-14")))
 
 (add-to-list 'default-frame-alist `(font . ,(tsoding/get-default-font)))
 
@@ -97,6 +98,10 @@
 ;;; Display relative line numbers
 (setq display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+;;; Visual line mode is active with text and source code files
+(add-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'prog-mode-hook #'visual-line-mode)
 
 ;;; Visual goodie for delimiters
 (tsoding/require 'rainbow-delimiters)
