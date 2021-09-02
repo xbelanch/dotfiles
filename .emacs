@@ -176,6 +176,7 @@
       (concat dired-omit-files "\\|^\\..+$"))
 (setq-default dired-dwim-target t)
 (setq dired-listing-switches "-alh")
+(setq dired-auto-revert-buffer nil)
 
 ;;; Custom function for duplicate files on Dired
 ;;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
