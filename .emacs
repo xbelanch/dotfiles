@@ -58,7 +58,7 @@
   (cond
    ((eq system-type 'windows-nt) "Consolas-13")
    ;; ((eq system-type 'gnu/linux) "Ubuntu Mono-18")))
-   ((eq system-type 'gnu/linux) "JuliaMono-14")))
+   ((eq system-type 'gnu/linux) "Fantasque Sans Mono-20")))
 
 (add-to-list 'default-frame-alist `(font . ,(tsoding/get-default-font)))
 
@@ -75,10 +75,10 @@
 
 ;;; Compile buffer to show in a vertical buffer
 ;;; From: https://stackoverflow.com/questions/4157147/compile-buffer-to-show-in-a-vertical-buffer
-(defadvice compile (around split-horizontally activate)
-  (let ((split-width-threshold 0)
-        (split-height-threshold nil))
-    ad-do-it))
+;; (defadvice compile (around split-horizontally activate)
+;;   (let ((split-width-threshold 0)
+;;         (split-height-threshold nil))
+;;     ad-do-it))
 
 ;;; Show buffer filename on title bar
 (setq frame-title-format
