@@ -141,3 +141,6 @@ if [ "$WSLVER" = "2" ] && [ "$WSL" = "yes" ]; then
     export GDK_SCALE=1
     export GDK_DPI_SCALE=1
 fi
+
+# Add .local/bin path
+path+=("$HOME/.local/bin")
