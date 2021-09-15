@@ -144,3 +144,5 @@ fi
 
 # Add .local/bin path
 path+=("$HOME/.local/bin")
+
+alias git='LANG=en_GB git'
