@@ -161,6 +161,14 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
+;;; Disable automatic file search in ido mode
+;;; src: https://stackoverflow.com/questions/17986194/emacs-disable-automatic-file-search-in-ido-mode
+(setq ido-auto-merge-work-directories-length -1)
+;;; If you experienced some weird issues when list cached directories under Windows:
+;;; Some systems, like MS-Windows, have unreliable directory modification times, so you may choose to disable caching on such systems, or explicitly refresh the cache contents using the command ido-reread-directory (usually C-l) in the minibuffer.
+;;; Sources:
+;;; - https://www.gnu.org/software/emacs/manual/html_node/ido/Working-Directories.html
+;;; - https://www.reddit.com/r/emacs/comments/auha7e/problems_finding_files_in_subdirectories_with/
 
 ;;; Helm
 (tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git 'helm-ag)
@@ -267,6 +275,16 @@
  'olivetti
  'typescript-mode
  )
+
+;;;
+;;; Org: Fast access to TODO states
+;;; ===============================
+;;;
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+        (sequence "|" "CANCELED(c)")))
 
 ;;;
 ;;; Default global values
