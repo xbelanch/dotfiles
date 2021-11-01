@@ -70,7 +70,6 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
-(column-number-mode 1)
 (show-paren-mode 1)
 
 ;;; Compile buffer to show in a vertical buffer
@@ -97,11 +96,9 @@
 
 ;;; Display relative line numbers
 (setq display-line-numbers-type 'relative)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-
 ;;; Visual line mode is active with text and source code files
-(add-hook 'text-mode-hook #'visual-line-mode)
-(add-hook 'prog-mode-hook #'visual-line-mode)
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; Visual goodie for delimiters
 (tsoding/require 'rainbow-delimiters)
@@ -127,6 +124,22 @@
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
           '((default :height 0.85))))
+
+;;; Uncomment this if you want to increase text of all buffers
+;;; (defadvice text-scale-increase (around all-buffers (arg) activate)
+;;;   (dolist (buffer (buffer-list))
+;;;     (with-current-buffer buffer
+;;;       ad-do-it)))
+
+;;; Change the line numbers column font scale in a specific buffer in emacs
+;;; Stolen from: https://unix.stackexchange.com/questions/7507/emacs-text-scale-adjust-causes-line-numbers-column-to-incrementally-shrink-and-d/593889#593889
+(defun post-text-scale-callback ()
+  ;; fix line number text size
+  (set-face-attribute 'line-number nil
+                      :height (floor (* (face-attribute 'default :height)
+                                        (expt text-scale-mode-step text-scale-mode-amount)))))
+(add-hook 'text-scale-mode-hook 'post-text-scale-callback)
+
 
 ;;; You can use M-y after C-y to insert previous item from the kill ring, or use browse-kill-ring package.
 (delete-region (point) (line-end-position))
@@ -309,7 +322,6 @@
               auto-save-interval  2048
               indicate-empty-lines t
               indent-tabs-mode nil
-              column-number-mode 1
               display-time-mode 1
               show-paren-mode 1
               mode-require-final-newline nil
