@@ -96,9 +96,12 @@
 
 ;;; Display relative line numbers
 (setq display-line-numbers-type 'relative)
-;;; Visual line mode is active with text and source code files
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+;;; Visual line mode is active with text and source code files
+(add-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'prog-mode-hook #'visual-line-mode)
 
 ;;; Visual goodie for delimiters
 (tsoding/require 'rainbow-delimiters)
@@ -124,12 +127,6 @@
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
           '((default :height 0.85))))
-
-;;; Uncomment this if you want to increase text of all buffers
-;;; (defadvice text-scale-increase (around all-buffers (arg) activate)
-;;;   (dolist (buffer (buffer-list))
-;;;     (with-current-buffer buffer
-;;;       ad-do-it)))
 
 ;;; Change the line numbers column font scale in a specific buffer in emacs
 ;;; Stolen from: https://unix.stackexchange.com/questions/7507/emacs-text-scale-adjust-causes-line-numbers-column-to-incrementally-shrink-and-d/593889#593889
