@@ -86,8 +86,10 @@
                  "%b"))))
 
 ;;; Set Zenburn Theme
-(tsoding/require-theme 'zenburn)
-(load-theme 'zenburn t)
+(tsoding/require-theme 'gruber-darker)
+;; (load-theme 'zenburn t)
+(eval-after-load 'zenburn
+  (set-face-attribute 'line-number nil :inherit 'default))
 
 ;;; Ace-window manager
 (tsoding/require 'ace-window)
@@ -396,7 +398,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("03e26cd42c3225e6376d7808c946f7bed6382d795618a82c8f3838cd2097a9cc" default))
  '(org-agenda-files
    '("/mnt/f/IOC/Batxillerat/todo-general.org" "/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
  '(package-selected-packages
-   '(ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
+   '(gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
