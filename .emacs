@@ -87,8 +87,10 @@
 
 ;;; Set Zenburn Theme
 (tsoding/require-theme 'gruber-darker)
-;; (load-theme 'zenburn t)
-(eval-after-load 'zenburn
+(load-theme 'gruber-darker t)
+;;;; This allows to increase the line-number font size according to zoom +/-
+;;;; Thanks @tsoding as usual
+(eval-after-load 'gruber-darker
   (set-face-attribute 'line-number nil :inherit 'default))
 
 ;;; Ace-window manager
@@ -129,16 +131,6 @@
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
           '((default :height 0.85))))
-
-;;; Change the line numbers column font scale in a specific buffer in emacs
-;;; Stolen from: https://unix.stackexchange.com/questions/7507/emacs-text-scale-adjust-causes-line-numbers-column-to-incrementally-shrink-and-d/593889#593889
-(defun post-text-scale-callback ()
-  ;; fix line number text size
-  (set-face-attribute 'line-number nil
-                      :height (floor (* (face-attribute 'default :height)
-                                        (expt text-scale-mode-step text-scale-mode-amount)))))
-(add-hook 'text-scale-mode-hook 'post-text-scale-callback)
-
 
 ;;; You can use M-y after C-y to insert previous item from the kill ring, or use browse-kill-ring package.
 (delete-region (point) (line-end-position))
