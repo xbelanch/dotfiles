@@ -58,7 +58,8 @@
   (cond
    ((eq system-type 'windows-nt) "Consolas-13")
    ;; ((eq system-type 'gnu/linux) "Ubuntu Mono-18")))
-   ((eq system-type 'gnu/linux) "Fantasque Sans Mono-20")))
+   ;; ((eq system-type 'gnu/linux) "Fantasque Sans Mono-20")))
+   ((eq system-type 'gnu/linux) "Iosevka-20")))
 
 (add-to-list 'default-frame-alist `(font . ,(tsoding/get-default-font)))
 
