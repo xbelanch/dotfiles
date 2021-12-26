@@ -258,6 +258,10 @@
 (add-hook 'c-mode-hook (lambda ()
                          (interactive)
                          (c-toggle-comment-style -1)))
+
+;;; Makefile
+(setq compile-command "make -B ")
+
 ;;; GDB
 (setq gdb-many-windows t
       gdb-show-main t)

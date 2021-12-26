@@ -43,7 +43,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease
 
 # Contrain focused window
-floating_maximum_size 800 x 600
+# floating_maximum_size 800 x 600
 for_window [floating] move position center
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -103,6 +103,10 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+
+# constraining floating window size
+floating_minimum_size 256 x 256
+floating_maximum_size 1280 x 720
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
