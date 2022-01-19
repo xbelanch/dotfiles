@@ -1,0 +1,28 @@
+%%
+% This is the nothing pandoc LaTeX template.
+%
+%%
+
+%
+\documentclass[
+  $if(fontsize)$
+  $fontsize$,
+  $endif$
+  $if(lang)$
+  $babel-lang$,
+  $endif$
+  $if(papersize)$
+  $papersize$paper,
+  $else$
+  paper=a4,
+  $endif$
+  $for(classoption)$
+  $classoption$$sep$,
+  $endfor$
+  ,captions=tableheading
+]{article}
+
+%
+\begin{document}
+$body$
+\end{document}
