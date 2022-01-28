@@ -145,4 +145,9 @@ fi
 # Add .local/bin path
 path+=("$HOME/.local/bin")
 
+# git output in english, please
 alias git='LANG=en_GB git'
+
+# Ruby env
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
