@@ -59,7 +59,7 @@
    ((eq system-type 'windows-nt) "Consolas-13")
    ;; ((eq system-type 'gnu/linux) "Ubuntu Mono-18")))
    ;; ((eq system-type 'gnu/linux) "Fantasque Sans Mono-20")))
-   ((eq system-type 'gnu/linux) "Iosevka-20")))
+   ((eq system-type 'gnu/linux) "Iosevka-16")))
 
 (add-to-list 'default-frame-alist `(font . ,(tsoding/get-default-font)))
 
@@ -338,6 +338,18 @@
   (yank)
   (newline)
   (yank))
+
+;;; Stolen from:
+;;; https://emacs.stackexchange.com/questions/18161/how-to-replace-multiple-newlines-for-single-one-in-whole-file
+(defun remove-extra-blank-lines ()
+    "replace multiple blank lines with a single one"
+    (interactive)
+    (setq orig (point))
+    (goto-char (point-min))
+    (while (re-search-forward "^\n+" nil t)
+      (replace-match "\n")
+      (forward-char 1))
+     (goto-char orig))
 
 ;;;
 ;;; Keybindings
