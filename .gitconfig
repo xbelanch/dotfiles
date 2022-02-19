@@ -9,3 +9,5 @@
 	tree = log --graph --decorate --pretty=online --abbrev-commit --all
 [init]
 	defaultBranch = main
+[core]
+	editor = /usr/bin/emacs

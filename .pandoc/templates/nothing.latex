@@ -3,10 +3,15 @@
 %
 %%
 
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names,table}{xcolor}
 %
 \documentclass[
   $if(fontsize)$
-  $fontsize$,
+  $fontsize$
+  $else$
+  11pt,
   $endif$
   $if(lang)$
   $babel-lang$,
@@ -22,6 +27,14 @@
   ,captions=tableheading
 ]{article}
 
+$if(mainfont)$
+  \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+
+\usepackage{hyperref}
+\renewcommand{\baselinestretch}{1.5}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 %
 \begin{document}
 $body$
