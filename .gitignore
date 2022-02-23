@@ -12,3 +12,14 @@
 .config/mypaint/*
 .config/pulse/*
 .config/qutebrowser/*
+.config/AndryBlack/*
+.config/Code - OSS/*
+.config/NuGet/*
+.config/OpenTabletDriver/*
+.config/VSCodium/*
+.config/bleachbit/*
+.config/discord/*
+.config/godot/*
+.config/gtk-3.0/bookmarks
+.config/inkscape/*
+.config/systemd/*
