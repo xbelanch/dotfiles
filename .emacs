@@ -217,6 +217,10 @@
 ;;; ===================
 ;;;
 
+;;; compile buffer to show in a horizontal buffer
+(setq split-width-threshold nil)
+(setq split-height-threshold 0)
+
 ;;; Magit everywhere
 (tsoding/require 'magit)
 (setq magit-auto-revert-mode nil)
