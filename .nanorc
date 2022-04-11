@@ -1,0 +1,67 @@
+# Display line numbers
+set linenumbers
+# Use auto-indentation
+set autoindent
+# Remember the used search/replace strings for next session
+set historylog
+# Enable mouse
+set mouse
+# Enable word wrapping
+set softwrap
+# Setting tab size
+set tabsize 4
+# Use bold text instead of reverse video
+# set boldtext
+# Constantly display the cursor position in the status bar.
+set constantshow
+# Set the target width for justifying and automatic hard-wrapping at this number of columns
+set fill 2
+# Enable regexp searches by default
+set regexp
+# Set the two characters used to indicate the presence of tabs and spaces
+set whitespace ">."
+# Obvius
+set nonewlines
+# Key bindings
+unbind ^k main
+unbind ^u main
+unbind ^w main
+
+bind ^o insert main
+bind ^w writeout main
+bind ^q exit main
+bind ^a help main
+
+bind ^p prevword main
+bind ^n nextword main
+bind ^b firstline main
+bind ^e lastline main
+bind ^l curpos main
+bind ^j gotoline main
+
+bind ^z undo main
+bind ^y redo main
+
+# bind ^F whereis main
+# bind ^G searchagain main
+# bind ^H replace main
+
+bind ^s findnext main
+
+bind ^Space mark main
+bind ^x cut main
+# bind ^c copytext main
+# bind ^v uncut main
+
+# Custom interface colours
+set titlecolor yellow,grey
+set numbercolor white,black
+set statuscolor white,black
+
+# Add colour syntax
+# Grabbed from https://github.com/scopatz/nanorc
+include "~/.nano/c.nanorc"
+include "~/.nano/sh.nanorc"
+include "~/.nano/markdown.nanorc"
+include "~/.nano/json.nanorc"
+include "~/.nano/nanorc.nanorc"
