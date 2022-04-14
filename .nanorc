@@ -1,27 +1,17 @@
-# Display line numbers
 set linenumbers
-# Use auto-indentation
 set autoindent
-# Remember the used search/replace strings for next session
 set historylog
-# Enable mouse
 set mouse
-# Enable word wrapping
 set softwrap
-# Setting tab size
 set tabsize 4
-# Use bold text instead of reverse video
-# set boldtext
-# Constantly display the cursor position in the status bar.
 set constantshow
-# Set the target width for justifying and automatic hard-wrapping at this number of columns
 set fill 2
-# Enable regexp searches by default
 set regexp
-# Set the two characters used to indicate the presence of tabs and spaces
 set whitespace ">."
-# Obvius
 set nonewlines
+set tabstospaces
+set multibuffer
+
 # Key bindings
 unbind ^k main
 unbind ^u main
@@ -39,19 +29,20 @@ bind ^e lastline main
 bind ^l curpos main
 bind ^j gotoline main
 
+bind ^Space mark main
+bind ^x cut main
+bind ^c copy main
+bind ^v paste main
+
+bind ^f whereis main
+# bind ^g searchagain main
+bind ^h replace main
+
 bind ^z undo main
 bind ^y redo main
 
-# bind ^F whereis main
-# bind ^G searchagain main
-# bind ^H replace main
-
-bind ^s findnext main
-
-bind ^Space mark main
-bind ^x cut main
-# bind ^c copytext main
-# bind ^v uncut main
+bind m-a nohelp main
+# bind m-l constupdate main
 
 # Custom interface colours
 set titlecolor yellow,grey
