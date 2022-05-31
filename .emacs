@@ -264,7 +264,7 @@
                          (c-toggle-comment-style -1)))
 
 ;;; Makefile
-(setq compile-command "make -B ")
+(setq compile-command "./build.sh")
 
 ;;; GDB
 (setq gdb-many-windows t
@@ -416,4 +416,5 @@
  '(org-agenda-files
    '("/mnt/f/IOC/Batxillerat/todo-general.org" "/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
  '(package-selected-packages
-   '(gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
+   '(company-c-headers gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
+(put 'downcase-region 'disabled nil)
