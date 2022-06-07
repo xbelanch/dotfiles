@@ -289,6 +289,9 @@
  'typescript-mode
  )
 
+(add-to-list 'load-path "~/.emacs.local/")
+(require 'arma-mode)
+
 ;;;
 ;;; Org: Fast access to TODO states
 ;;; ===============================
@@ -416,4 +419,4 @@
  '(org-agenda-files
    '("/mnt/f/IOC/Batxillerat/todo-general.org" "/mnt/f/IOC/Batxillerat/Materies/FA1B1/todo.org"))
  '(package-selected-packages
-   '(gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
+   '(go-mode gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
