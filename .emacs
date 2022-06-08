@@ -243,6 +243,7 @@
 ;;; Company
 (tsoding/require 'company)
 (require 'company)
+(require 'company-c-headers)
 (global-company-mode)
 
 ;;; Yasnippet
@@ -258,6 +259,7 @@
 ;;;
 
 ;;; CC-Mode
+(require 'cc-mode)
 (setq-default c-basic-offset 4)
 (add-hook 'c-mode-hook (lambda ()
                          (interactive)
