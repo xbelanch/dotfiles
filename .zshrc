@@ -79,6 +79,7 @@ plugins=(
     git
     colored-man-pages
     history
+    fzf
 )
 
 source $ZSH/oh-my-zsh.sh
