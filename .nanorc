@@ -1,7 +1,7 @@
 set linenumbers
 set autoindent
 set historylog
-set mouse
+# set mouse
 set softwrap
 set tabsize 4
 set constantshow
@@ -43,7 +43,7 @@ bind ^z undo main
 bind ^y redo main
 
 bind m-a nohelp main
-# bind m-l constupdate main
+bind m-l linenumbers main
 
 # Custom interface colours
 set titlecolor brightgreen,normal

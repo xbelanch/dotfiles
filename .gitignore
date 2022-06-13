@@ -23,5 +23,8 @@
 .config/gtk-3.0/bookmarks
 .config/inkscape/*
 .config/systemd/*
-.nano/search_history
+.nano/search_histor
+.config/chromium/
+.config/htop/
+.config/mimeapps.list
 .gitmodules
