@@ -22,12 +22,13 @@ bind ^w writeout main
 bind ^q exit main
 bind ^a help main
 
-bind ^p prevword main
-bind ^n nextword main
+bind m-p prevword main
+bind m-n nextword main
 bind ^b firstline main
 bind ^e lastline main
-bind ^l curpos main
-bind ^j gotoline main
+bind ^p curpos main
+bind ^l gotoline main
+bind ^j justify main
 
 bind ^Space mark main
 bind ^x cut main
@@ -45,9 +46,9 @@ bind m-a nohelp main
 # bind m-l constupdate main
 
 # Custom interface colours
-set titlecolor yellow,grey
-set numbercolor white,black
-set statuscolor white,black
+set titlecolor brightgreen,normal
+set numbercolor yellow,normal
+set statuscolor red,normal
 
 # Add colour syntax
 # Grabbed from https://github.com/scopatz/nanorc
