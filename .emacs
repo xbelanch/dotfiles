@@ -242,6 +242,7 @@
 
 ;;; Company
 (tsoding/require 'company)
+(tsoding/require 'company-c-headers)
 (require 'company)
 (require 'company-c-headers)
 (global-company-mode)
