@@ -290,6 +290,7 @@
  'graphviz-dot-mode
  'olivetti
  'typescript-mode
+ 'go-mode
  )
 
 (add-to-list 'load-path "~/.emacs.local/")

@@ -28,3 +28,4 @@
 .config/htop/
 .config/mimeapps.list
 .gitmodules
+.nano/search_history
