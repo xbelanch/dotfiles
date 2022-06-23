@@ -27,5 +27,8 @@
 .config/chromium/
 .config/htop/
 .config/mimeapps.list
+.config/gtk*/*
 .gitmodules
 .nano/search_history
+.config/gtk-2.0/gtkfilechooser.ini
+.config/gtk-3.0/settings.ini
