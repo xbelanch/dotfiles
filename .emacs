@@ -98,177 +98,8 @@
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
 
-<<<<<<< ours
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-||||||| base
-;;; Helm
-(tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git 'helm-ag)
-(setq helm-ff-transformer-show-only-basename nil)
-(setq helm-ag-base-command "ag --nocolor --ignore-case --literal --line-number --column --stats --hidden --nogroup --ignore .git")
-(setq helm-ag-command-option "--all-text")
-(setq helm-ag-insert-at-point 'symbol)
-(setq helm-ag-ignore-buffer-patterns '("\\.txt\\'" "\\.mkd\\'"))
-
-;;; Dired
-(require 'dired-x)
-(setq dired-omit-files
-      (concat dired-omit-files "\\|^\\..+$"))
-(setq-default dired-dwim-target t)
-(setq dired-listing-switches "-alh")
-(setq dired-auto-revert-buffer nil)
-
-;;; Custom function for duplicate files on Dired
-;;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
-(defun dired-duplicate-this-file ()
-  "Duplicate file on this line."
-  (interactive)
-  (let* ((this  (dired-get-filename t))
-         (ctr   1)
-         (new   (format "%s Copy" this)))
-    (while (file-exists-p new)
-      (setq ctr  (1+ ctr)
-            new  (format "%s Copy (%d)" this ctr)))
-     (dired-copy-file this new nil))
-  (revert-buffer))
-
-;;; Make man replace the same buffer
-;;; Stolen from: https://emacs.stackexchange.com/questions/45174/how-to-make-man-replace-the-same-buffer
-(defun last-woman-standing ()
-  (interactive)
-  (kill-matching-buffers "^\*WoMan .*\*" nil t)
-  (call-interactively #'woman))
-
-;;;
-;;; Programming Helpers
-;;; ===================
-;;;
-
-;;; compile buffer to show in a horizontal buffer
-(setq split-width-threshold nil)
-(setq split-height-threshold 0)
-
-;;; Magit everywhere
-(tsoding/require 'magit)
-(setq magit-auto-revert-mode nil)
-
-;;; Colorize compilation output
-(require 'ansi-color)
-(defun tsoding/colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'tsoding/colorize-compilation-buffer)
-
-;;; Smartparens
-(tsoding/require 'smartparens)
-(require 'smartparens)
-(show-smartparens-global-mode +1)
-(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
-
-;;; Company
-(tsoding/require 'company)
-(require 'company)
-(require 'company-c-headers)
-(global-company-mode)
-
-;;; Yasnippet
-(tsoding/require 'yasnippet)
-(require 'yasnippet)
-(setq yas/triggers-in-field nil)
-(setq yas-snippet-dirs '("~/.emacs.snippets/"))
-(yas-global-mode 1)
-
-;;;
-;;; Programming and Markup Languages
-;;; ================================
-;;;
-=======
-;;; Helm
-(tsoding/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git 'helm-ag)
-(setq helm-ff-transformer-show-only-basename nil)
-(setq helm-ag-base-command "ag --nocolor --ignore-case --literal --line-number --column --stats --hidden --nogroup --ignore .git")
-(setq helm-ag-command-option "--all-text")
-(setq helm-ag-insert-at-point 'symbol)
-(setq helm-ag-ignore-buffer-patterns '("\\.txt\\'" "\\.mkd\\'"))
-
-;;; Dired
-(require 'dired-x)
-(setq dired-omit-files
-      (concat dired-omit-files "\\|^\\..+$"))
-(setq-default dired-dwim-target t)
-(setq dired-listing-switches "-alh")
-(setq dired-auto-revert-buffer nil)
-
-;;; Custom function for duplicate files on Dired
-;;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
-(defun dired-duplicate-this-file ()
-  "Duplicate file on this line."
-  (interactive)
-  (let* ((this  (dired-get-filename t))
-         (ctr   1)
-         (new   (format "%s Copy" this)))
-    (while (file-exists-p new)
-      (setq ctr  (1+ ctr)
-            new  (format "%s Copy (%d)" this ctr)))
-     (dired-copy-file this new nil))
-  (revert-buffer))
-
-;;; Make man replace the same buffer
-;;; Stolen from: https://emacs.stackexchange.com/questions/45174/how-to-make-man-replace-the-same-buffer
-(defun last-woman-standing ()
-  (interactive)
-  (kill-matching-buffers "^\*WoMan .*\*" nil t)
-  (call-interactively #'woman))
-
-;;;
-;;; Programming Helpers
-;;; ===================
-;;;
-
-;;; compile buffer to show in a horizontal buffer
-(setq split-width-threshold nil)
-(setq split-height-threshold 0)
-
-;;; Magit everywhere
-(tsoding/require 'magit)
-(setq magit-auto-revert-mode nil)
-
-;;; Colorize compilation output
-(require 'ansi-color)
-(defun tsoding/colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'tsoding/colorize-compilation-buffer)
-
-;;; Smartparens
-(tsoding/require 'smartparens)
-(require 'smartparens)
-(show-smartparens-global-mode +1)
-(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
-
-;;; Company
-(tsoding/require 'company)
-(tsoding/require 'company-c-headers)
-(require 'company)
-(require 'company-c-headers)
-(global-company-mode)
-
-;;; Yasnippet
-(tsoding/require 'yasnippet)
-(require 'yasnippet)
-(setq yas/triggers-in-field nil)
-(setq yas-snippet-dirs '("~/.emacs.snippets/"))
-(yas-global-mode 1)
-
-;;;
-;;; Programming and Markup Languages
-;;; ================================
-;;;
->>>>>>> theirs
 
 ;;; c-mode
 (setq-default c-basic-offset 4
@@ -279,168 +110,11 @@
                          (interactive)
                          (c-toggle-comment-style -1)))
 
-<<<<<<< ours
 ;;; Whitespace mode
 ;;; Stolen from https://github.com/rexim/dotfiles/blob/master/.emacs
 ;;; @TODO Display whitespace when mark is set
 (xba/require-package 'whitespace)
 (defun rc/set-up-whitespace-handling ()
-||||||| base
-;;; Makefile
-(setq compile-command "./build.sh")
-
-;;; GDB
-(setq gdb-many-windows t
-      gdb-show-main t)
-
-;;; Markdown/GFM
-(tsoding/require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-
-;;; Packages that don't require configuration
-(tsoding/require
- 'js2-mode
- 'emmet-mode
- 'nasm-mode
- 'yaml-mode
- 'glsl-mode
- 'lua-mode
- 'graphviz-dot-mode
- 'olivetti
- 'typescript-mode
- )
-
-(add-to-list 'load-path "~/.emacs.local/")
-(require 'arma-mode)
-
-;;;
-;;; Org: Fast access to TODO states
-;;; ===============================
-;;;
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-        (sequence "|" "CANCELED(c)")))
-
-;;;
-;;; Default global values
-;;; =====================
-;;;
-
-(setq-default inhibit-splash-screen t
-              inhibit-startup-message t
-              debug-on-error nil
-              make-backup-files nil
-              message-log-max 500
-              tab-width 4
-              warning-suppress-types nil
-              indent-tabs-mode nil
-              display-time-default-load-average nil
-              cursor-in-non-selected-windows t
-              compilation-scroll-output t
-              fill-column 80 ;; Set width for automatic line breaks
-              vc-follow-symlinks t
-              electric-pair-preserve-balance nil
-              global-auto-revert-mode t
-              auto-save-interval  2048
-              indicate-empty-lines t
-              indent-tabs-mode nil
-              display-time-mode 1
-              show-paren-mode 1
-              mode-require-final-newline nil
-              visible-bell nil) ;; No flashing, please.
-
-;;;
-;;; Custom functions
-;;; ================
-;;;
-
-;;; Stolen again from @tsoding:
-;;; https://github.com/rexim/dotfiles/blob/master/.emacs.tsoding/misc-rc.el#L120
-(defun tsoding/duplicate-line ()
-  "Duplicate current line"
-=======
-;;; Makefile
-(setq compile-command "./build.sh")
-
-;;; GDB
-(setq gdb-many-windows t
-      gdb-show-main t)
-
-;;; Markdown/GFM
-(tsoding/require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-
-;;; Packages that don't require configuration
-(tsoding/require
- 'js2-mode
- 'emmet-mode
- 'nasm-mode
- 'yaml-mode
- 'glsl-mode
- 'lua-mode
- 'graphviz-dot-mode
- 'olivetti
- 'typescript-mode
- 'go-mode
- )
-
-(add-to-list 'load-path "~/.emacs.local/")
-(require 'arma-mode)
-
-;;;
-;;; Org: Fast access to TODO states
-;;; ===============================
-;;;
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-        (sequence "|" "CANCELED(c)")))
-
-;;;
-;;; Default global values
-;;; =====================
-;;;
-
-(setq-default inhibit-splash-screen t
-              inhibit-startup-message t
-              debug-on-error nil
-              make-backup-files nil
-              message-log-max 500
-              tab-width 4
-              warning-suppress-types nil
-              indent-tabs-mode nil
-              display-time-default-load-average nil
-              cursor-in-non-selected-windows t
-              compilation-scroll-output t
-              fill-column 80 ;; Set width for automatic line breaks
-              vc-follow-symlinks t
-              electric-pair-preserve-balance nil
-              global-auto-revert-mode t
-              auto-save-interval  2048
-              indicate-empty-lines t
-              indent-tabs-mode nil
-              display-time-mode 1
-              show-paren-mode 1
-              mode-require-final-newline nil
-              visible-bell nil) ;; No flashing, please.
-
-;;;
-;;; Custom functions
-;;; ================
-;;;
-
-;;; Stolen again from @tsoding:
-;;; https://github.com/rexim/dotfiles/blob/master/.emacs.tsoding/misc-rc.el#L120
-(defun tsoding/duplicate-line ()
-  "Duplicate current line"
->>>>>>> theirs
   (interactive)
   (whitespace-mode 1)
   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
@@ -460,8 +134,8 @@
 ;; Windows.
 (xba/require-package 'magit)
 (setq magit-auto-revert-mode nil)
-(global-set-key (kbd "C-c m s") 'magit-status)
-(global-set-key (kbd "C-c m l") 'magit-log)
+;; (global-set-key (kbd "C-c m s") 'magit-status)
+;; (global-set-key (kbd "C-c m l") 'magit-log)
 
 ;;; helm
 (xba/require-package 'helm)
@@ -474,6 +148,10 @@
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-q") 'kill-this-buffer)
+(global-set-key (kbd "<S-return>") (kbd "C-e C-m"))
+(global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
 
 ;;; Display line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
@@ -485,7 +163,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-<<<<<<< ours
    '(paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ls-git helm-git-grep helm-cmd-t helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
  '(display-line-numbers-type (quote relative))
  '(whitespace-style (quote (face tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))))
@@ -495,10 +172,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-||||||| base
-   '(company-c-headers gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
-(put 'downcase-region 'disabled nil)
-=======
-   '(company-c-headers gruber-darker-theme ace-window ag anzu company csharp-mode dash-functional emmet-mode js2 gfm-mode glsl-mode graphviz-dot-mode helm helm-ag helm-cmd-t helm-git-grep helm-ls-git ido-completing-read+ js2-mode lua-mode magit markdown-mode move-text multiple-cursors mwim nasm-mode olivetti olivetti-mode rainbow-delimiters smartparens smex solarized-theme typescript-mode yaml-mode yasnippet zenburn-theme)))
-(put 'downcase-region 'disabled nil)
->>>>>>> theirs
