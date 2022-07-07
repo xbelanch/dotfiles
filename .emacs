@@ -222,6 +222,7 @@
 (global-set-key (kbd "M-SPC") 'avy-goto-char-timer)
 (global-set-key (kbd "C-a") 'mwim-beginning)
 (global-set-key (kbd "C-e") 'mwim-end)
+;; C-u before of execute helm-ag to change base directory
 (global-set-key (kbd "C-c h s") 'helm-ag)
 
 (custom-set-variables
