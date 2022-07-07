@@ -189,6 +189,10 @@
 ;; Set custom default compile command 
 (setq compile-command "./build.sh")
 
+;; Compile buffer to show in a horizontal buffer
+(setq split-width-threshold nil)
+(setq split-height-threshold 0)
+
 ;; Local
 (add-to-list 'load-path "~/.emacs.local/")
 (require 'arma-mode)
