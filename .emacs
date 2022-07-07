@@ -162,6 +162,10 @@
 
 ;; Helm
 (xba/require-package 'helm)
+(xba/require-package 'helm-ag)
+;; Stolen from "Disable helm-find-files path autocompletion?"
+;; src: https://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
+(setq helm-ff-auto-update-initial-value nil)
 
 ;; Company
 (xba/require-package 'company)
@@ -236,7 +240,7 @@
  ;; If there is more than one, they won't work right.
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ls-git helm-git-grep helm-cmd-t helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
+   '(paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
