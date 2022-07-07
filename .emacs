@@ -30,7 +30,6 @@
 
 ;; A modern list API for Emacs. No 'cl required.
 (xba/require-package 'dash)
-(xba/require-package 'dash-functional)
 
 ;; @TODO: Explain this
 (require 'ansi-color)
@@ -233,9 +232,6 @@
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
    '(paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ls-git helm-git-grep helm-cmd-t helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
- '(display-line-numbers-type (quote relative))
- '(whitespace-style (quote (face tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))))
-   '(dockerfile-mode paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ls-git helm-git-grep helm-cmd-t helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
