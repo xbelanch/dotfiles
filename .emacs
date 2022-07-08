@@ -186,10 +186,6 @@
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
-;; Display line numbers
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-
 ;; Set custom default compile command 
 (setq compile-command "./build.sh")
 
@@ -217,6 +213,10 @@
 (xba/require-package 'dockerfile-mode)
 (xba/require-package 'go-mode)
 (xba/require-package 'typescript-mode)
+
+;; Display line numbers
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;; Custom keybindings
 (global-unset-key (kbd "C-z"))
