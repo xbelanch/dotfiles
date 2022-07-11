@@ -153,8 +153,7 @@
 (defun xba/set-up-whitespace-handling ()
   (interactive)
   (whitespace-mode 0)
-  (add-to-list 'write-file-functions 'delete-trailing-whitespace)
-  (add-to-list 'write-file-functions 'xba/remove-extra-blank-lines))
+  (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
 (add-hook 'c++-mode-hook 'xba/set-up-whitespace-handling)
 (add-hook 'c-mode-hook 'xba/set-up-whitespace-handling)
