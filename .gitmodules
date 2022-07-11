@@ -1,0 +1,9 @@
+[submodule ".oh-my-zsh/themes/zsh"]
+	path = .oh-my-zsh/themes/zsh
+	url = https://github.com/dracula/zsh.git
+[submodule ".oh-my-zsh/themes/dracula.zsh-theme"]
+	path = .oh-my-zsh/themes/dracula.zsh-theme
+	url = https://github.com/dracula/zsh.git
+[submodule ".emacs.local/whitespace4r.el"]
+	path = .emacs.local/whitespace4r.el
+	url = https://github.com/twlz0ne/whitespace4r.el.git
