@@ -133,28 +133,41 @@
                          (interactive)
                          (c-toggle-comment-style -1)))
 
+;;; Stolen from:
+;;; https://emacs.stackexchange.com/questions/18161/how-to-replace-multiple-newlines-for-single-one-in-whole-file
+(defun xba/remove-extra-blank-lines ()
+    "replace multiple blank lines with a single one"
+    (interactive)
+    (setq orig (point))
+    (goto-char (point-min))
+    (while (re-search-forward "^\n+" nil t)
+      (replace-match "\n")
+      (forward-char 1))
+     (goto-char orig))
+
 ;; Whitespace mode
 ;; Stolen from https://github.com/rexim/dotfiles/blob/master/.emacs
 ;; @TODO: Display trailing spaces when selected region
 ;; https://emacs.stackexchange.com/questions/54305/show-white-spaces-only-when-region-is-selected
 (xba/require-package 'whitespace)
-(defun rc/set-up-whitespace-handling ()
+(defun xba/set-up-whitespace-handling ()
   (interactive)
-  (whitespace-mode 1)
-  (add-to-list 'write-file-functions 'delete-trailing-whitespace))
+  (whitespace-mode 0)
+  (add-to-list 'write-file-functions 'delete-trailing-whitespace)
+  (add-to-list 'write-file-functions 'xba/remove-extra-blank-lines))
 
-(add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
-(add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'markdown-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'asm-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'nasm-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'go-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'yaml-mode-hook 'rc/set-up-whitespace-handling)
+(add-hook 'c++-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'c-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'emacs-lisp-mode 'xba/set-up-whitespace-handling)
+(add-hook 'lua-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'markdown-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'asm-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'nasm-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'go-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'yaml-mode-hook 'xba/set-up-whitespace-handling)
 
 ;; @INFO: This makes invisible spaces
-(set-face-attribute 'whitespace-space nil :background nil :foreground "gray45")
+(set-face-attribute 'whitespace-space nil :background nil :foreground "gray75")
 
 ;; Magit
 (xba/require-package 'magit)
@@ -166,6 +179,9 @@
 ;; Stolen from "Disable helm-find-files path autocompletion?"
 ;; src: https://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
 (setq helm-ff-auto-update-initial-value nil)
+(setq helm-ff-transformer-show-only-basename nil)
+(setq helm-ag-base-command "ag --nocolor --ignore-case --literal --line-number --column --stats --hidden --nogroup --ignore .git")
+;; @INFO: C-z disable autocompletion when you do find-file command
 
 ;; Company
 (xba/require-package 'company)
@@ -176,6 +192,12 @@
 (setq yas/triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.snippets/"))
 (yas-global-mode 1)
+
+;; Smartparens
+(xba/require-package 'smartparens)
+(show-smartparens-global-mode +1)
+(add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
+(add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
 
 ;; Multiple cursors
 (xba/require-package 'multiple-cursors)
@@ -193,9 +215,16 @@
 (setq split-width-threshold nil)
 (setq split-height-threshold 0)
 
-;; Local
+;; Load local files
 (add-to-list 'load-path "~/.emacs.local/")
 (require 'arma-mode)
+(add-to-list 'load-path "~/.emacs.local/whitespace4r.el/")
+(require 'whitespace4r)
+
+;; Enable whitespace4r
+(add-hook 'text-mode-hook #'whitespace4r-mode)
+(add-hook 'prog-mode-hook #'whitespace4r-mode)
+(add-hook 'markdown-mode-hook #'whitespace4r-mode)
 
 ;; Nasm
 (xba/require-package 'nasm-mode)
@@ -213,10 +242,33 @@
 (xba/require-package 'dockerfile-mode)
 (xba/require-package 'go-mode)
 (xba/require-package 'typescript-mode)
+(xba/require-package 'olivetti)
+(xba/require-package 'man)
 
 ;; Display line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'markdown-mode-hook #'display-line-numbers-mode)
+
+;;; word-wrap
+(defun xba/enable-word-wrap ()
+  (interactive)
+  (toggle-word-wrap 1))
+
+(add-hook 'markdown-mode-hook 'xba/enable-word-wrap)
+
+;;; electric-pair
+(defun xba/enable-electric-pair ()
+  (interactive)
+  (electric-pair-mode 1))
+
+(add-hook 'text-mode-hook #'xba/enable-electric-pair)
+(add-hook 'markdown-mode-hook 'xba/enable-electric-pair)
+(add-hook 'prog-mode-hook #'xba/enable-electric-pair)
+
+;; Expand region increases the selected region by semantic units. Just keep pressing the key until it selects what you want.
+(xba/require-package 'expand-region)
+(global-set-key (kbd "C-;") 'er/expand-region)
 
 ;; Custom keybindings
 (global-unset-key (kbd "C-z"))
@@ -240,7 +292,7 @@
  ;; If there is more than one, they won't work right.
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode emmet-mode dash-functional company-c-headers anzu ace-window))
+   '(go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
