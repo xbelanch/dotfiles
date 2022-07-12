@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: log
+# key: log
+# --
+[__FILE__,__LINE__, $1] call BSM_fnc_log;
+$0
