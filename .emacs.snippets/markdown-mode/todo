@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Add TODO comment
+# key: todo
+# --
+<!--
+@TODO: $1 (`(format-time-string "%d-%m-%Y")`)
+-->
+$0

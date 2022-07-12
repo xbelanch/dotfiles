@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Components semàntics
+# key: cmp
+# --
+:::${1:$$(yas-choose-value '("text-destacat" "consell" "atencio" "recorda" "amplia" "context-de-lectura" "context-procedimental"))}
+${2:Lorem ipsum dolor est}.
+:::
+
+$0

@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: cita
+# key: cita
+# --
+:::cita
+:::cita-cos
+:::cita-linia
+:::
+:::cita-text
+${1:Text de la cita}
+:::
+:::cita-referencia
+<span>${2:autoria}</span>, <span>${3:obra}</span>
+:::
+:::
+:::
+
+$0

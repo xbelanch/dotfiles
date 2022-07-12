@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Exemple
+# key: exemple
+# --
+:::exemple
+
+# ${1:Títol de mostra}
+
+$2
+:::
+
+$0
