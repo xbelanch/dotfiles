@@ -12,179 +12,248 @@
     (syntax-table))
   "Syntax table for `arma-mode'.")
 
-(defvar arma-keywords
-  '("and"  "do" "else" "exit" "exitWith" "false" "for" "forEach" "forEachMember" "forEachMemberAgent" "forEachMemberTeam" "from" "if" "in" "nil" "not" "or" "then" "to" "true" "try" "waitUntil" "with" "while"))
-
 ;; https://alexschroeder.ch/geocities/kensanata/colors.html
 (defface bis-functions-arma-face `((t (:foreground "SeaGreen1")))  "SeaGreen1")
 (defvar bis-functions-arma-face 'bis-functions-arma-face 
   "Variable for face `bis-functions-arma-face'.")
 
-(defun arma-commands-rx (commands)
-  "build commands regexp"
-  (regexp-opt commands t))
+(defface magic-variables-face `((t (:foreground "magenta1")))  "magenta1")
+(defvar magic-variables-face 'magic-variables-face 
+  "Variable for face `magic-variables-face'.")
+
+
+(defconst arma-arrays-commands
+  (rx (or bol space)
+      (group (or
+              "append"
+              "apply"
+              "arrayIntersect"
+              "count"
+              "createHashMapFromArray"
+              "deleteAt"
+              "deleteRange"
+              "find"
+              "findAny"
+              "findIf"
+              "flatten"
+              "forEach"
+              "in"
+              "insert"
+              "isArray"
+              "isEqualTypeAll"
+              "isEqualTypeArray"
+              "param"
+              "params"
+              "parseSimpleArray"
+              "pushBack"
+              "pushBackUnique"
+              "resize"
+              "reverse"
+              "select"
+              "selectMax"
+              "selectMin"
+              "selectRandom"
+              "selectRandomWeighted"
+              "set"
+              "sort"
+              "toArray"
+              "toString"
+              )
+             (and (zero-or-more word)))
+      space))
+
+(defconst arma-config-commands
+  (rx (or bol space)
+      (group (or
+              "campaignConfigFile"
+              "configClasses"
+              "configFile"
+              "configHierarchy"
+              "configName"
+              "configNull"
+              "configOf"
+              "configProperties"
+              "configSourceAddonList"
+              "count"
+              "getArray"
+              "getMissionConfig"
+              "getMissionConfigValue"
+              "getNumber"
+              "getText"
+              "getTextRaw"
+              "inheritsFrom"
+              "isArray"
+              "isClass"
+              "isNumber"
+              "isText"
+              "loadConfig"
+              "missionConfigFile"
+              "select"
+              )
+             (and (zero-or-more word)))
+      space))
+
+(defconst arma-server-execution-commands
+  (rx (or bol space)
+      (group (or
+              "addCuratorAddons"
+              "addCuratorCameraArea"
+              "addCuratorEditableObjects"
+              "addCuratorEditingArea"
+              "addCuratorPoints"
+              "addPlayerScores"
+              "addScore"
+              "addScoreSide"
+              "admin"
+              "allowCuratorLogicIgnoreAreas"
+              "allUsers"
+              "assignCurator"
+              "copyToClipboard"
+              "didJIPOwner"
+              "enableSimulationGlobal"
+              "estimatedTimeLeft"
+              "forceWeatherChange"
+              "getMissionLayerEntities"
+              "getUserInfo"
+              "groupOwner"
+              "hideObjectGlobal"
+              "onPlayerConnected"
+              "onPlayerDisconnected"
+              "owner"
+              "radioChannelCreate"
+              "removeAllCuratorAddons"
+              "removeAllCuratorCameraAreas"
+              "removeAllCuratorEditingAreas"
+              "removeCuratorAddons"
+              "removeCuratorCameraArea"
+              "removeCuratorEditableObjects"
+              "removeCuratorEditingArea"
+              "serverCommand"
+              "serverNamespace"
+              "setCuratorCameraAreaCeiling"
+              "setCuratorCoef"
+              "setCuratorEditingAreaType"
+              "setCuratorWaypointCost"
+              "setFog"
+              "setFriend"
+              "setGroupOwner"
+              "setMaxLoad"
+              "setOwner"
+              "setRain"
+              "setShotParents"
+              "setTerrainHeight"
+              "setTimeMultiplier"
+              "setWaypointBehaviour"
+              "setWaypointFormation"
+              "setWaypointSpeed"
+              "setWindDir"
+              "skipTime"
+              "turretOwner"
+              "unassignCurator"
+              )
+             (and (zero-or-more word)))
+      space))
+
+(defconst arma-program-flow-commands
+  (rx (or bol space)
+      (group (or
+              "assert"
+              "break"
+              "breakOut"
+              "breakTo"
+              "breakWith"
+              "call"
+              "canSuspend"
+              "case"
+              "catch"
+              "continue"
+              "continueWith"
+              "default"
+              "do"
+              "else"
+              "exec"
+              "execFSM"
+              "execVM"
+              "exit"
+              "exitWith"
+              "fileExists"
+              "for"
+              "forEach"
+              "forEachMember"
+              "forEachMemberAgent"
+              "forEachMemberTeam"
+              "from"
+              "goto"
+              "halt"
+              "if"
+              "isUIContext"
+              "loadFile"
+              "scopeName"
+              "scriptDone"
+              "scriptName"
+              "sleep"
+              "spawn"
+              "step"
+              "switch"
+              "terminate"
+              "then"
+              "throw"
+              "to"
+              "try"
+              "uiSleep"
+              "waitUntil"
+              "while"
+              "with"
+              )
+             (and (zero-or-more word)))
+      space))
+
+;; https://community.bistudio.com/wiki/Magic_Variables
+(defconst arma-magic-variables
+  (rx (or bol space)
+      (group (or
+               "_this"
+               "_x"
+               "_y"
+               "_exception"
+               "_forEachIndex"
+               "_thisArgs"
+               "_thisEventHandler"
+               "_thisScriptedEventHandler"
+               "_thisEvent"
+               "_thisFSM"
+               "_thisScript"
+               "_time"
+               "_fnc_scriptName"
+               "_fnc_scriptNameParent"
+               "this"
+               "thisList"
+               "thisTrigger"
+              )
+             (and (zero-or-more word)))
+      space))
 
 (defconst arma-font-lock-defaults
   `(
-    ;; Keywords
-    (,(regexp-opt arma-keywords 'symbols) . font-lock-keyword-face)
     ;; Single quote characters
     ("\\('[[:word:]]\\)\\>" . font-lock-constant-face)
     ;; Arma BIS functions
     ("\s\\(BIS_fnc_\\w+\\)" . bis-functions-arma-face)
     ;; Custom functions
     ("\s\\(\\w+_fnc_\\w+\\)" . font-lock-function-name-face)
+
     ;; Arma commands
-    (,(rx (or
-           bol
-           space)
-          (group (or
-                  "abs"
-                  "accTime"
-                  "acos"
-                  "action"
-                  "activate"
-                  "add"
-                  "admin"
-                  "agent"
-                  "agents"
-                  "air"
-                  "all"
-                  "anim"
-                  "assign"
-                  "attach"
-                  "attack"
-                  "backpack"
-                  "bounding"
-                  "break"
-                  "building"
-                  "call"
-                  "cam"
-                  "can"
-                  "class"
-                  "clear"
-                  "close"
-                  "command"
-                  "compile"
-                  "config"
-                  "copy"
-                  "create"
-                  "ct"
-                  "curator"
-                  "current"
-                  "delete"
-                  "diag "
-                  "dialog"
-                  "disable"
-                  "display"
-                  "distance"
-                  "difficulty"
-                  "do"
-                  "draw"
-                  "dynamic"
-                  "east"
-                  "echo"
-                  "enable"
-                  "end"
-                  "env"
-                  "exec"
-                  "face"
-                  "faction"
-                  "fade"
-                  "find"
-                  "fire"
-                  "flag"
-                  "floor"
-                  "fog"
-                  "force"
-                  "format"
-                  "fuel"
-                  "full"
-                  "gear"
-                  "get"
-                  "global"
-                  "group"
-                  "halt"
-                  "has"
-                  "hc"
-                  "hint"
-                  "in"
-                  "is"
-                  "join"
-                  "kb"
-                  "land"
-                  "lb"
-                  "leader"
-                  "line"
-                  "lnb"
-                  "load"
-                  "look"
-                  "magazine"
-                  "marker"
-                  "max"
-                  "menu"
-                  "min"
-                  "mine"
-                  "mod"
-                  "model"
-                  "move"
-                  "name"
-                  "near"
-                  "obj"
-                  "on"
-                  "open"
-                  "par"
-                  "play"
-                  "pp"
-                  "preload"
-                  "push"
-                  "query"
-                  "rad"
-                  "regex"
-                  "remote"
-                  "remove"
-                  "road"
-                  "role"
-                  "rope"
-                  "safe"
-                  "say"
-                  "screen"
-                  "select"
-                  "set"
-                  "show"
-                  "skip"
-                  "sleep"
-                  "switch"
-                  "synch"
-                  "target"
-                  "task"
-                  "team"
-                  "text"
-                  "to"
-                  "trigger"
-                  "tv"
-                  "ui"
-                  "uniform"
-                  "unit"
-                  "vector"
-                  "vest"
-                  "view"
-                  "visible"
-                  "wait"
-                  "waypoint"
-                  "weapon"
-                  "wind"
-                  "with"
-                  "world"
-                  )
-                 (and
-                  (zero-or-more word))
-                 )
-          space) 1 font-lock-builtin-face)
+    (,arma-magic-variables 1 magic-variables-face)
+    (,arma-program-flow-commands 1 font-lock-keyword-face)
+    (,arma-arrays-commands 1 font-lock-builtin-face)
+    (,arma-config-commands 1 font-lock-builtin-face)
+    (,arma-server-execution-commands 1 font-lock-builtin-face)
+
     ;; Hash directives
     ("#\\w+" . font-lock-preprocessor-face)
     ;; Strings
     ("\\\".*\\\"" . font-lock-string-face)
+
     ;; Local variables
     ;; https://stackoverflow.com/questions/4355071/elisp-regexp-match-group-if-followed-by-other-regexp
     ("\\(^\\|\s\\|\t\\|\\[\\|\s(\\)\\(_\\w+\\)" 2 font-lock-variable-name-face)
