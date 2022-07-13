@@ -18,9 +18,10 @@
   (defconst arma-commands
     '("call" "getArray" "createMarker" "setMarkerColor" "setMarkerType" "setMarkerText" "format" "nearestLocations" "nearObjects" "getPos" "setDate" "createVehicle" "position" "landAt" "private" "setDamage" "sleep")))
 
-(eval-and-compile
-  (defconst arma-functions
-    '("BIS_fnc_param" "BIS_fnc_spawnVehicle")))
+;; https://alexschroeder.ch/geocities/kensanata/colors.html
+(defface bis-functions-arma-face `((t (:foreground "SeaGreen1")))  "SeaGreen1")
+(defvar bis-functions-arma-face 'bis-functions-arma-face 
+    "Variable for face `bis-functions-arma-face'.")
 
 (defconst arma-font-lock-defaults
   `(
@@ -28,11 +29,11 @@
     (,(regexp-opt arma-keywords 'symbols) . font-lock-keyword-face)
     ;; Single quote characters
     ("\\('[[:word:]]\\)\\>" . font-lock-constant-face)
-    ;; Functions
-    (,(regexp-opt arma-functions) . font-lock-function-name-face)
+    ;; Arma BIS functions
+    ("\s\\(BIS_fnc_\\w+\\)" . bis-functions-arma-face)
     ;; Custom functions
     ("\s\\(\\w+_fnc_\\w+\\)" . font-lock-function-name-face)
-    ;; Commands
+    ;; Arma commands
     (,(regexp-opt arma-commands) . font-lock-builtin-face)
     ;; Hash directives
     ("#\\w+" . font-lock-preprocessor-face)
