@@ -217,7 +217,7 @@
 ;; Load local files
 (add-to-list 'load-path "~/.emacs.local/")
 (require 'arma-mode)
-;; override some color face
+;; override builtin-face foreground color for arma major mode
 (defun my-arma-mode-faces ()
   (face-remap-add-relative 'font-lock-builtin-face '(:foreground "LightGoldenrod" :weight bold)))
 (add-hook 'arma-mode-hook 'my-arma-mode-faces)
@@ -296,7 +296,7 @@
  ;; If there is more than one, they won't work right.
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
+   '(s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
