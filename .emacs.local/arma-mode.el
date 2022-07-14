@@ -1,23 +1,29 @@
 ;;; arma-mode.el --- Major Mode for editing arma files source code -*- lexical-binding: t -*-
 (require 'rx)
 
-(defconst arma-mode-syntax-table
-  (with-syntax-table (copy-syntax-table)
+(defvar  arma-mode-syntax-table
+  (let ((table (make-syntax-table)))
     ;; C/C++ style comments
-	(modify-syntax-entry ?/ ". 124b")
-	(modify-syntax-entry ?* ". 23")
-	(modify-syntax-entry ?\n "> b")
+	(modify-syntax-entry ?/ ". 124b" table)
+	(modify-syntax-entry ?* ". 23" table)
+	(modify-syntax-entry ?\n "> b" table)
+    ;; Preprocessor stuff?
+    (modify-syntax-entry ?# "." table)
     ;; Chars are the same as strings
-    (modify-syntax-entry ?' "\"")
-    (syntax-table))
-  "Syntax table for `arma-mode'.")
+    (modify-syntax-entry ?' "\"" table)
+    ;; Treat <> as punctuation (needed to highlight C++ keywords
+    ;; properly in template syntax)
+    (modify-syntax-entry ?< "." table)
+    (modify-syntax-entry ?> "." table)
+    (modify-syntax-entry ?& "." table)
+    table))
 
 ;; https://alexschroeder.ch/geocities/kensanata/colors.html
 (defface bis-functions-arma-face `((t (:foreground "SeaGreen1")))  "SeaGreen1")
 (defvar bis-functions-arma-face 'bis-functions-arma-face 
   "Variable for face `bis-functions-arma-face'.")
 
-(defface magic-variables-face `((t (:foreground "magenta1")))  "magenta1")
+(defface magic-variables-face `((t (:foreground "orchid2")))  "orchid2")
 (defvar magic-variables-face 'magic-variables-face 
   "Variable for face `magic-variables-face'.")
 
@@ -203,9 +209,8 @@
               "waitUntil"
               "while"
               "with"
-              )
-             (and (zero-or-more word)))
-      space))
+              ))
+      (or space "(" "{")))
 
 (defconst arma-builtin-functions
   (rx (or bol space)
@@ -218,7 +223,7 @@
 (defconst arma-custom-functions
   (rx (or bol space)
       (group (and
-        (+ (any "A-Z"))
+        (+ (any "A-Za-z"))
         "_fnc_"
         (1+ word)
        ))
@@ -226,7 +231,7 @@
 
 ;; https://community.bistudio.com/wiki/Magic_Variables
 (defconst arma-magic-variables
-  (rx (or bol space)
+  (rx (or bol space "[")
       (group (or
                "_this"
                "_x"
@@ -245,9 +250,8 @@
                "this"
                "thisList"
                "thisTrigger"
-              )
-             (and (zero-or-more word)))
-      space))
+               ))
+             (or space "," "]")))
 
 (defconst arma-font-lock-defaults
   `(
@@ -275,14 +279,55 @@
     ("\\(^\\|\s\\|\t\\|\\[\\|\s(\\)\\(_\\w+\\)" 2 font-lock-variable-name-face)
     ))
 
-;;;###autoload
+;; stolen from @tsoding simpc.el
+;; works like a charm!
+;; https://github.com/rexim/dotfiles/blob/master/.emacs.local/simpc-mode.el
+(defun simpc--space-prefix-len (line)
+  (- (length line)
+     (length (string-trim-left line))))
+
+(defun simpc--previous-non-empty-line ()
+  (save-excursion
+    (forward-line -1)
+    (while (and (not (bobp))
+                (string-empty-p
+                 (string-trim-right
+                  (thing-at-point 'line t))))
+      (forward-line -1))
+    (thing-at-point 'line t)))
+
+(defun simpc--desired-indentation ()
+  (let ((cur-line (string-trim-right (thing-at-point 'line t)))
+        (prev-line (string-trim-right (simpc--previous-non-empty-line)))
+        (indent-len 4))
+    (cond
+     ((and (string-suffix-p "{" prev-line)
+           (string-prefix-p "}" (string-trim-left cur-line)))
+      (simpc--space-prefix-len prev-line))
+     ((string-suffix-p "{" prev-line)
+      (+ (simpc--space-prefix-len prev-line) indent-len))
+     ((string-prefix-p "}" (string-trim-left cur-line))
+      (max (- (simpc--space-prefix-len prev-line) indent-len) 0))
+     (t (simpc--space-prefix-len prev-line)))))
+
+(defun simpc-indent-line ()
+  (interactive)
+  (when (not (bobp))
+    (let* ((current-indentation
+            (simpc--space-prefix-len (thing-at-point 'line t)))
+           (desired-indentation
+            (simpc--desired-indentation))
+           (n (max (- (current-column) current-indentation) 0)))
+      (indent-line-to desired-indentation)
+      (forward-char n))))
+
 (define-derived-mode arma-mode prog-mode "arma"
   "Major Mode for editing arma source code."
   :syntax-table arma-mode-syntax-table
   (setq font-lock-defaults '(arma-font-lock-defaults))
+  (setq-local indent-line-function 'simpc-indent-line)
   (setq-local comment-start "// "))
 
-;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.sqf\\'" . arma-mode))
 
 (provide 'arma-mode)

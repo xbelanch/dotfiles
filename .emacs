@@ -216,12 +216,14 @@
 
 ;; Load local files
 (add-to-list 'load-path "~/.emacs.local/")
+
+;; major mode for arma scripting language
 (require 'arma-mode)
-;; override builtin-face foreground color for arma major mode
 (defun my-arma-mode-faces ()
   (face-remap-add-relative 'font-lock-builtin-face '(:foreground "LightGoldenrod" :weight bold))
   (face-remap-add-relative 'font-lock-keyword-face '(:foreground "light pink" :weight normal)))
 (add-hook 'arma-mode-hook 'my-arma-mode-faces)
+(add-hook 'arma-mode-hook 'xba/set-up-whitespace-handling)
 
 (add-to-list 'load-path "~/.emacs.local/whitespace4r.el/")
 (require 'whitespace4r)
