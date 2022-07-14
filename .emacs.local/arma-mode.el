@@ -21,7 +21,6 @@
 (defvar magic-variables-face 'magic-variables-face 
   "Variable for face `magic-variables-face'.")
 
-
 (defconst arma-arrays-commands
   (rx (or bol space)
       (group (or
@@ -208,6 +207,23 @@
              (and (zero-or-more word)))
       space))
 
+(defconst arma-builtin-functions
+  (rx (or bol space)
+      (group (and
+        "BIS_fnc_"
+        (1+ word)
+       ))
+       (or space ";")))
+
+(defconst arma-custom-functions
+  (rx (or bol space)
+      (group (and
+        (+ (any "A-Z"))
+        "_fnc_"
+        (1+ word)
+       ))
+       (or space ";")))
+
 ;; https://community.bistudio.com/wiki/Magic_Variables
 (defconst arma-magic-variables
   (rx (or bol space)
@@ -237,10 +253,10 @@
   `(
     ;; Single quote characters
     ("\\('[[:word:]]\\)\\>" . font-lock-constant-face)
-    ;; Arma BIS functions
-    ("\s\\(BIS_fnc_\\w+\\)" . bis-functions-arma-face)
-    ;; Custom functions
-    ("\s\\(\\w+_fnc_\\w+\\)" . font-lock-function-name-face)
+    ;; Arma builtin functions
+    (,arma-builtin-functions 1 bis-functions-arma-face)
+    ;; Arma custom functions
+    (,arma-custom-functions 1 font-lock-function-name-face)
 
     ;; Arma commands
     (,arma-magic-variables 1 magic-variables-face)
