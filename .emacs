@@ -261,17 +261,7 @@
 (defun xba/enable-word-wrap ()
   (interactive)
   (toggle-word-wrap 1))
-
 (add-hook 'markdown-mode-hook 'xba/enable-word-wrap)
-
-;;; electric-pair
-(defun xba/enable-electric-pair ()
-  (interactive)
-  (electric-pair-mode 1))
-
-(add-hook 'text-mode-hook #'xba/enable-electric-pair)
-(add-hook 'markdown-mode-hook 'xba/enable-electric-pair)
-(add-hook 'prog-mode-hook #'xba/enable-electric-pair)
 
 ;; Expand region increases the selected region by semantic units. Just keep pressing the key until it selects what you want.
 (xba/require-package 'expand-region)
