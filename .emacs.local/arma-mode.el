@@ -85,13 +85,13 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Camera_Control
 (defconst arma-commands-camera-control
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Curator" "addCamShake" "apertureParams" "camCommand" "camCommit" "camCommitPrepared" "camCommitted" "camConstuctionSetParams" "camCreate" "camDestroy" "cameraEffect" "cameraEffectEnableHUD" "cameraInterest" "cameraOn" "cameraView" "camPreload" "camPreloaded" "camPrepareBank" "camPrepareDir" "camPrepareDive" "camPrepareFocus" "camPrepareFov" "camPrepareFovRange" "camPreparePos" "camPrepareRelPos" "camPrepareTarget" "camSetBank" "camSetDir" "camSetDive" "camSetFocus" "camSetFov" "camSetFovRange" "camSetPos" "camSetRelPos" "camSetTarget" "camTarget" "camUseNVG" "directionStabilizationEnabled" "enableCamShake" "enableDirectionStabilization" "enableEndDialog" "lockCameraTo" "lockedCameraTo" "positionCameraToWorld" "ppEffectAdjust" "ppEffectCommit" "ppEffectCommitted" "ppEffectCreate" "ppEffectDestroy" "ppEffectEnable" "ppEffectEnabled" "ppEffectForceInNVG" "preloadCamera" "resetCamShake" "setAperture" "setApertureNew" "setCameraEffect" "setCameraInterest" "setCamShakeDefParams" "setCamShakeParams" "setCamUseTI" "setDefaultCamera" "setHorizonParallaxCoef" "setPiPEffect" "showCinemaBorder" "switchCamera" ))
+        (group (or "addCamShake" "apertureParams" "camCommand" "camCommit" "camCommitPrepared" "camCommitted" "camConstuctionSetParams" "camCreate" "camDestroy" "cameraEffect" "cameraEffectEnableHUD" "cameraInterest" "cameraOn" "cameraView" "camPreload" "camPreloaded" "camPrepareBank" "camPrepareDir" "camPrepareDive" "camPrepareFocus" "camPrepareFov" "camPrepareFovRange" "camPreparePos" "camPrepareRelPos" "camPrepareTarget" "camSetBank" "camSetDir" "camSetDive" "camSetFocus" "camSetFov" "camSetFovRange" "camSetPos" "camSetRelPos" "camSetTarget" "camTarget" "camUseNVG" "directionStabilizationEnabled" "enableCamShake" "enableDirectionStabilization" "enableEndDialog" "lockCameraTo" "lockedCameraTo" "positionCameraToWorld" "ppEffectAdjust" "ppEffectCommit" "ppEffectCommitted" "ppEffectCreate" "ppEffectDestroy" "ppEffectEnable" "ppEffectEnabled" "ppEffectForceInNVG" "preloadCamera" "resetCamShake" "setAperture" "setApertureNew" "setCameraEffect" "setCameraInterest" "setCamShakeDefParams" "setCamShakeParams" "setCamUseTI" "setDefaultCamera" "setHorizonParallaxCoef" "setPiPEffect" "showCinemaBorder" "switchCamera" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Config
 (defconst arma-commands-config
     (rx (or bol space "," "[" "{" "(")
-        (group (or "campaignConfigFile" "configClasses" "configFile" "configHierarchy" "configName" "configNull" "configOf" "configProperties" "configSourceAddonList" "count" "getArray" "getMissionConfig" "getMissionConfigValue" "getNumber" "getText" "getTextRaw" "inheritsFrom" "isArray" "isClass" "isNumber" "isText" "loadConfig" "missionConfigFile" "select" ))
+        (group (or "campaignConfigFile" "configClasses" "configFile" "configHierarchy" "configName" "configNull" "configOf" "configProperties" "configSourceAddonList" "config_greater_greater_name" "count" "diag_exportConfig" "diag_mergeConfigFile" "getArray" "getMissionConfig" "getMissionConfigValue" "getNumber" "getText" "getTextRaw" "inheritsFrom" "isArray" "isClass" "isNumber" "isText" "loadConfig" "missionConfigFile" "select" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Containers
@@ -103,7 +103,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Conversations
 (defconst arma-commands-conversations
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Conversations" "kbAddDatabase" "kbAddDatabaseTargets" "kbAddTopic" "kbHasTopic" "kbReact" "kbRemoveTopic" "kbTell" "kbWasSaid" ))
+        (group (or "kbAddDatabase" "kbAddDatabaseTargets" "kbAddTopic" "kbHasTopic" "kbReact" "kbRemoveTopic" "kbTell" "kbWasSaid" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Curator
@@ -121,7 +121,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Diagnostic
 (defconst arma-commands-diagnostic
     (rx (or bol space "," "[" "{" "(")
-        (group (or "echo" "enableDiagLegend" "exportJIPMessages" "getTerrainHeight" "getTerrainInfo" "isFilePatchingEnabled" "logEntities" "logNetwork" "logNetworkTerminate" "setCustomMissionData" "setTerrainHeight" ))
+        (group (or "diag_activeMissionFSMs" "diag_activeScripts" "diag_activeSQFScripts" "diag_activeSQSScripts" "diag_allMissionEventHandlers" "diag_captureFrame" "diag_captureFrameToFile" "diag_captureSlowFrame" "diag_codePerformance" "diag_deltaTime" "diag_drawMode" "diag_dumpCalltraceToLog" "diag_dumpScriptAssembly" "diag_dumpTerrainSynth" "diag_dynamicSimulationEnd" "diag_dynamicSimulationStart" "diag_enable" "diag_enabled" "diag_exportConfig" "diag_exportTerrainSVG" "diag_fps" "diag_fpsMin" "diag_frameNo" "diag_getTerrainGrid" "diag_getTerrainHeight" "diag_getTerrainSegmentOffset" "diag_lightNewLoad" "diag_list" "diag_log" "diag_logSlowFrame" "diag_mergeConfigFile" "diag_recordTurretLimits" "diag_resetShapes" "diag_scope" "diag_setLightNew" "diag_setTerrainHeight" "diag_stacktrace" "diag_tickTime" "diag_toggle" "echo" "enableDiagLegend" "exportJIPMessages" "getTerrainHeight" "getTerrainInfo" "isFilePatchingEnabled" "logEntities" "logNetwork" "logNetworkTerminate" "setCustomMissionData" "setTerrainHeight" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Difficulty
@@ -133,7 +133,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Dynamic_Simulation
 (defconst arma-commands-dynamic-simulation
     (rx (or bol space "," "[" "{" "(")
-        (group (or "canTriggerDynamicSimulation" "dynamicSimulationDistance" "dynamicSimulationDistanceCoef" "dynamicSimulationEnabled" "dynamicSimulationSystemEnabled" "enableDynamicSimulation" "enableDynamicSimulationSystem" "setDynamicSimulationDistance" "setDynamicSimulationDistanceCoef" "triggerDynamicSimulation" ))
+        (group (or "canTriggerDynamicSimulation" "diag_dynamicSimulationEnd" "diag_dynamicSimulationStart" "dynamicSimulationDistance" "dynamicSimulationDistanceCoef" "dynamicSimulationEnabled" "dynamicSimulationSystemEnabled" "enableDynamicSimulation" "enableDynamicSimulationSystem" "setDynamicSimulationDistance" "setDynamicSimulationDistanceCoef" "triggerDynamicSimulation" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Eden_Editor
@@ -151,7 +151,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Event_Handlers
 (defconst arma-commands-event-handlers
     (rx (or bol space "," "[" "{" "(")
-        (group (or "addEventHandler" "addMissionEventHandler" "addMPEventHandler" "addMusicEventHandler" "addPublicVariableEventHandler" "addUserActionEventHandler" "ctrlAddEventHandler" "ctrlRemoveAllEventHandlers" "ctrlRemoveEventHandler" "ctrlSetEventHandler" "displayAddEventHandler" "displayRemoveAllEventHandlers" "displayRemoveEventHandler" "displaySetEventHandler" "editorSetEventHandler" "getEventHandlerInfo" "inGameUISetEventHandler" "onBriefingGear" "onBriefingGroup" "onBriefingNotes" "onBriefingPlan" "onBriefingTeamSwitch" "onCommandModeChanged" "onEachFrame" "onGroupIconClick" "onGroupIconOverEnter" "onGroupIconOverLeave" "onHCGroupSelectionChanged" "onMapSingleClick" "onPlayerConnected" "onPlayerDisconnected" "onPreloadFinished" "onPreloadStarted" "onTeamSwitch" "removeAllEventHandlers" "removeAllMissionEventHandlers" "removeAllMusicEventHandlers" "removeAllUserActionEventHandlers" "removeEventHandler" "removeMissionEventHandler" "removeMPEventHandler" "removeMusicEventHandler" "removeUserActionEventHandler" "setMusicEventHandler" ))
+        (group (or "addEventHandler" "addMissionEventHandler" "addMPEventHandler" "addMusicEventHandler" "addPublicVariableEventHandler" "addUserActionEventHandler" "ctrlAddEventHandler" "ctrlRemoveAllEventHandlers" "ctrlRemoveEventHandler" "ctrlSetEventHandler" "diag_allMissionEventHandlers" "displayAddEventHandler" "displayRemoveAllEventHandlers" "displayRemoveEventHandler" "displaySetEventHandler" "editorSetEventHandler" "getEventHandlerInfo" "inGameUISetEventHandler" "onBriefingGear" "onBriefingGroup" "onBriefingNotes" "onBriefingPlan" "onBriefingTeamSwitch" "onCommandModeChanged" "onEachFrame" "onGroupIconClick" "onGroupIconOverEnter" "onGroupIconOverLeave" "onHCGroupSelectionChanged" "onMapSingleClick" "onPlayerConnected" "onPlayerDisconnected" "onPreloadFinished" "onPreloadStarted" "onTeamSwitch" "removeAllEventHandlers" "removeAllMissionEventHandlers" "removeAllMusicEventHandlers" "removeAllUserActionEventHandlers" "removeEventHandler" "removeMissionEventHandler" "removeMPEventHandler" "removeMusicEventHandler" "removeUserActionEventHandler" "setMusicEventHandler" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Flags
@@ -181,7 +181,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_HashMap
 (defconst arma-commands-hashmap
     (rx (or bol space "," "[" "{" "(")
-        (group (or "HashMap" "apply" "count" "createHashMap" "createHashMapFromArray" "deleteAt" "forEach" "get" "getOrDefault" "hashValue" "in" "insert" "keys" "merge" "set" "toArray" "values" ))
+        (group (or "apply" "count" "createHashMap" "createHashMapFromArray" "deleteAt" "forEach" "get" "getOrDefault" "hashValue" "in" "insert" "keys" "merge" "set" "toArray" "values" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_High_Command
@@ -205,19 +205,19 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Lights
 (defconst arma-commands-lights
     (rx (or bol space "," "[" "{" "(")
-        (group (or "apertureParams" "drawLaser" "enableGunLights" "getLighting" "getLightingAt" "isCollisionLightOn" "isIRLaserOn" "isLightOn" "lightAttachObject" "lightDetachObject" "lightIsOn" "setAperture" "setApertureNew" "setCollisionLight" "setLightAmbient" "setLightAttenuation" "setLightBrightness" "setLightColor" "setLightConePars" "setLightDayLight" "setLightFlareMaxDistance" "setLightFlareSize" "setLightIntensity" "setLightIR" "setLightUseFlare" "setLightVolumeShape" "setPilotLight" "switchLight" ))
+        (group (or "apertureParams" "diag_lightNewLoad" "diag_setLightNew" "drawLaser" "enableGunLights" "getLighting" "getLightingAt" "isCollisionLightOn" "isIRLaserOn" "isLightOn" "lightAttachObject" "lightDetachObject" "lightIsOn" "setAperture" "setApertureNew" "setCollisionLight" "setLightAmbient" "setLightAttenuation" "setLightBrightness" "setLightColor" "setLightConePars" "setLightDayLight" "setLightFlareMaxDistance" "setLightFlareSize" "setLightIntensity" "setLightIR" "setLightUseFlare" "setLightVolumeShape" "setPilotLight" "switchLight" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Localization
 (defconst arma-commands-localization
     (rx (or bol space "," "[" "{" "(")
-        (group (or "getTextRaw" "isLocalized" "localize" "WFSideText" ))
+        (group (or "diag_localized" "getTextRaw" "isLocalized" "localize" "WFSideText" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Locations
 (defconst arma-commands-locations
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Location" "attachObject" "className" "createLocation" "deleteLocation" "direction" "drawLocation" "importance" "in" "inArea" "inAreaArray" "locationNull" "locationPosition" "name" "nearestLocation" "nearestLocations" "nearestLocationWithDubbing" "rectangular" "setDirection" "setImportance" "setName" "setPosition" "setRectangular" "setSide" "setSize" "setSpeech" "setText" "setType" "size" "text" "type" ))
+        (group (or "attachObject" "className" "createLocation" "deleteLocation" "direction" "drawLocation" "importance" "in" "inArea" "inAreaArray" "locationNull" "locationPosition" "name" "nearestLocation" "nearestLocations" "nearestLocationWithDubbing" "rectangular" "setDirection" "setImportance" "setName" "setPosition" "setRectangular" "setSide" "setSize" "setSpeech" "setText" "setType" "size" "text" "type" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Map
@@ -235,7 +235,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Math
 (defconst arma-commands-math
     (rx (or bol space "," "[" "{" "(")
-        (group (or "abs" "and" "bezierInterpolation" "ceil" "decayGraphValues" "exp" "false" "finite" "floor" "getGraphValues" "linearConversion" "ln" "log" "matrixMultiply" "matrixTranspose" "max" "min" "mod" "not" "or" "random" "round" "sqrt" "toFixed" "true" ))
+        (group (or "a_greater_b" "a_less_b" "a_or_b" "abs" "and" "bezierInterpolation" "ceil" "decayGraphValues" "exp" "false" "finite" "floor" "getGraphValues" "linearConversion" "ln" "log" "matrixMultiply" "matrixTranspose" "max" "min" "mod" "not" "or" "random" "round" "sqrt" "toFixed" "true" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Mines
@@ -319,7 +319,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Render_Time_Scope
 (defconst arma-commands-render-time-scope
     (rx (or bol space "," "[" "{" "(")
-        (group (or "getPosVisual" "visiblePosition" "getPos" "position" "getPosATLVisual" "getPosATL" "getPosASLVisual" "visiblePositionASL" "getPosASL" "getPosASLW" "AGLToASL" "modelToWorldVisual" "getPosWorld" "modelToWorldVisual" "modelToWorld" "worldToModelVisual" "worldToModel" "getDirVisual" "getPosASLVisual" "getPosATLVisual" "getPosVisual" "getPosWorldVisual" "modelToWorldVisual" "modelToWorldVisualWorld" "selectionPosition" "unitAimPositionVisual" "vectorDirVisual" "vectorModelToWorldVisual" "vectorUpVisual" "vectorWorldToModelVisual" "visiblePosition" "visiblePositionASL" "worldToModelVisual" ))
+        (group (or "Simulation_vs_Render_Time_Scope" "getDirVisual" "getPosASLVisual" "getPosATLVisual" "getPosVisual" "getPosWorldVisual" "modelToWorldVisual" "modelToWorldVisualWorld" "selectionPosition" "unitAimPositionVisual" "vectorDirVisual" "vectorModelToWorldVisual" "vectorUpVisual" "vectorWorldToModelVisual" "visiblePosition" "visiblePositionASL" "worldToModelVisual" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Roads_and_Airports
@@ -337,7 +337,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_RTD
 (defconst arma-commands-rtd
     (rx (or bol space "," "[" "{" "(")
-        (group (or "difficultyEnabledRTD" "addForceGeneratorRTD" "airDensityCurveRTD" "airDensityRTD" "batteryChargeRTD" "clearForcesRTD" "collectiveRTD" "difficultyEnabledRTD" "enableAutoStartUpRTD" "enableAutoTrimRTD" "enableStressDamage" "enginesIsOnRTD" "enginesPowerRTD" "enginesRpmRTD" "enginesTorqueRTD" "forceAtPositionRTD" "forceGeneratorRTD" "getEngineTargetRPMRTD" "getRotorBrakeRTD" "getTrimOffsetRTD" "getWingsOrientationRTD" "getWingsPositionRTD" "isAutoStartUpEnabledRTD" "isAutoTrimOnRTD" "isObjectRTD" "isStressDamageEnabled" "numberOfEnginesRTD" "rotorsForcesRTD" "rotorsRpmRTD" "setActualCollectiveRTD" "setAPURTD" "setBatteryChargeRTD" "setBatteryRTD" "setBrakesRTD" "setCustomWeightRTD" "setEngineRpmRTD" "setForceGeneratorRTD" "setRotorBrakeRTD" "setStarterRTD" "setThrottleRTD" "setWantedRPMRTD" "setWingForceScaleRTD" "stopEngineRTD" "throttleRTD" "weightRTD" "windRTD" "wingsForcesRTD" ))
+        (group (or "addForceGeneratorRTD" "airDensityCurveRTD" "airDensityRTD" "batteryChargeRTD" "clearForcesRTD" "collectiveRTD" "difficultyEnabledRTD" "enableAutoStartUpRTD" "enableAutoTrimRTD" "enableStressDamage" "enginesIsOnRTD" "enginesPowerRTD" "enginesRpmRTD" "enginesTorqueRTD" "forceAtPositionRTD" "forceGeneratorRTD" "getEngineTargetRPMRTD" "getRotorBrakeRTD" "getTrimOffsetRTD" "getWingsOrientationRTD" "getWingsPositionRTD" "isAutoStartUpEnabledRTD" "isAutoTrimOnRTD" "isObjectRTD" "isStressDamageEnabled" "numberOfEnginesRTD" "rotorsForcesRTD" "rotorsRpmRTD" "setActualCollectiveRTD" "setAPURTD" "setBatteryChargeRTD" "setBatteryRTD" "setBrakesRTD" "setCustomWeightRTD" "setEngineRpmRTD" "setForceGeneratorRTD" "setRotorBrakeRTD" "setStarterRTD" "setThrottleRTD" "setWantedRPMRTD" "setWingForceScaleRTD" "stopEngineRTD" "throttleRTD" "weightRTD" "windRTD" "wingsForcesRTD" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Sensors
@@ -367,7 +367,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Strings
 (defconst arma-commands-strings
     (rx (or bol space "," "[" "{" "(")
-        (group (or "comment" "compile" "compileFinal" "composeText" "copyFromClipboard" "copyToClipboard" "count" "endl" "find" "forceUnicode" "format" "formatText" "getTextWidth" "hint" "hintC" "hintSilent" "image" "in" "insert" "isLocalized" "joinString" "lineBreak" "localize" "parseNumber" "parseSimpleArray" "parseText" "select" "setAttributes" "splitString" "str" "text" "toArray" "toFixed" "toLower" "toLowerANSI" "toString" "toUpper" "toUpperANSI" "trim" ))
+        (group (or "comment" "compile" "compileFinal" "composeText" "copyFromClipboard" "copyToClipboard" "count" "diag_localized" "endl" "find" "forceUnicode" "format" "formatText" "getTextWidth" "hint" "hintC" "hintSilent" "image" "in" "insert" "isLocalized" "joinString" "lineBreak" "localize" "parseNumber" "parseSimpleArray" "parseText" "select" "setAttributes" "splitString" "str" "text" "toArray" "toFixed" "toLower" "toLowerANSI" "toString" "toUpper" "toUpperANSI" "trim" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Structured_Text
@@ -379,31 +379,31 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_System
 (defconst arma-commands-system
     (rx (or bol space "," "[" "{" "(")
-        (group (or "addLiveStats" "armoryPoints" "benchmark" "calculatePlayerVisibilityByFriendly" "callExtension" "cheatsEnabled" "compileScript" "completedFSM" "connectToServer" "copyFromClipboard" "copyToClipboard" "currentNamespace" "distributionRegion" "enableCaustics" "enableSatNormalOnDetail" "endLoadingScreen" "exportLandscapeXYZ" "finishMissionInit" "getCalculatePlayerVisibilityByFriendly" "getFieldManualStartPage" "getMissionPath" "getObjectViewDistance" "getPiPViewDistance" "getResolution" "getShadowDistance" "getStatValue" "getSteamFriendsServers" "getTerrainGrid" "getTextureInfo" "hierarchyObjectsCount" "isAutotest" "isFilePatchingEnabled" "isGameFocused" "isGamePaused" "isPiPEnabled" "isStreamFriendlyUIEnabled" "keyImage" "keyName" "language" "libraryCredits" "libraryDisclaimers" "openDSInterface" "openSteamApp" "openYoutubeVideo" "playMission" "playScriptedMission" "preprocessFile" "preprocessFileLineNumbers" "processInitCommands" "productVersion" "profileName" "profileNameSteam" "progressLoadingScreen" "requiredVersion" "reversedMouseY" "runInitScript" "saveJoysticks" "screenshot" "setArmoryPoints" "setDetailMapBlendPars" "setFSMVariable" "setHorizonParallaxCoef" "setObjectViewDistance" "setPiPViewDistance" "setShadowDistance" "setStatValue" "setSystemOfUnits" "setTerrainGrid" "setToneMapping" "setToneMappingParams" "setViewDistance" "squadParams" "startLoadingScreen" "supportInfo" "systemOfUnits" "unlockAchievement" "useAIOperMapObstructionTest" "viewDistance" ))
+        (group (or "addLiveStats" "armoryPoints" "benchmark" "buldozer_enableRoadDiag" "buldozer_isEnabledRoadDiag" "buldozer_loadNewRoads" "buldozer_reloadOperMap" "calculatePlayerVisibilityByFriendly" "callExtension" "cheatsEnabled" "compileScript" "completedFSM" "connectToServer" "copyFromClipboard" "copyToClipboard" "currentNamespace" "distributionRegion" "enableCaustics" "enableSatNormalOnDetail" "endLoadingScreen" "exportLandscapeXYZ" "finishMissionInit" "getCalculatePlayerVisibilityByFriendly" "getFieldManualStartPage" "getMissionPath" "getObjectViewDistance" "getPiPViewDistance" "getResolution" "getShadowDistance" "getStatValue" "getSteamFriendsServers" "getTerrainGrid" "getTextureInfo" "hierarchyObjectsCount" "isAutotest" "isFilePatchingEnabled" "isGameFocused" "isGamePaused" "isPiPEnabled" "isStreamFriendlyUIEnabled" "keyImage" "keyName" "language" "libraryCredits" "libraryDisclaimers" "openDSInterface" "openSteamApp" "openYoutubeVideo" "playMission" "playScriptedMission" "preprocessFile" "preprocessFileLineNumbers" "processInitCommands" "productVersion" "profileName" "profileNameSteam" "progressLoadingScreen" "requiredVersion" "reversedMouseY" "runInitScript" "saveJoysticks" "screenshot" "setArmoryPoints" "setDetailMapBlendPars" "setFSMVariable" "setHorizonParallaxCoef" "setObjectViewDistance" "setPiPViewDistance" "setShadowDistance" "setStatValue" "setSystemOfUnits" "setTerrainGrid" "setToneMapping" "setToneMappingParams" "setViewDistance" "squadParams" "startLoadingScreen" "supportInfo" "systemOfUnits" "unlockAchievement" "useAIOperMapObstructionTest" "viewDistance" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Team_Switch
 (defconst arma-commands-team-switch
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Enlarge" "addSwitchableUnit" "enableTeamSwitch" "onBriefingTeamSwitch" "onTeamSwitch" "removeSwitchableUnit" "switchableUnits" "teamSwitch" "teamSwitchEnabled" ))
+        (group (or "addSwitchableUnit" "enableTeamSwitch" "onBriefingTeamSwitch" "onTeamSwitch" "removeSwitchableUnit" "switchableUnits" "teamSwitch" "teamSwitchEnabled" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Teams
 (defconst arma-commands-teams
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Team" "addResources" "addTeamMember" "agent" "agents" "createTask" "createTeam" "currentTasks" "deleteResources" "deleteTeam" "isAgent" "members" "registeredTasks" "registerTask" "removeTeamMember" "resources" "sendTask" "setLeader" "teamMember" "teamMemberNull" "teamName" "teams" "teamType" ))
+        (group (or "addResources" "addTeamMember" "agent" "agents" "createTask" "createTeam" "currentTasks" "deleteResources" "deleteTeam" "isAgent" "members" "registeredTasks" "registerTask" "removeTeamMember" "resources" "sendTask" "setLeader" "teamMember" "teamMemberNull" "teamName" "teams" "teamType" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Time
 (defconst arma-commands-time
     (rx (or bol space "," "[" "{" "(")
-        (group (or "accTime" "dayTime" "estimatedEndServerTime" "estimatedTimeLeft" "serverTime" "setAccTime" "setTimeMultiplier" "skipTime" "systemTime" "systemTimeUTC" "time" "timeMultiplier" ))
+        (group (or "accTime" "dayTime" "diag_deltaTime" "diag_tickTime" "estimatedEndServerTime" "estimatedTimeLeft" "serverTime" "setAccTime" "setTimeMultiplier" "skipTime" "systemTime" "systemTimeUTC" "time" "timeMultiplier" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Triggers
 (defconst arma-commands-triggers
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Triggers" "createTrigger" "inArea" "inAreaArray" "list" "setEffectCondition" "setMusicEffect" "setRadioMsg" "setSoundEffect" "setTitleEffect" "setTriggerActivation" "setTriggerArea" "setTriggerInterval" "setTriggerStatements" "setTriggerText" "setTriggerTimeout" "setTriggerType" "synchronizedTriggers" "synchronizedWaypoints" "synchronizeTrigger" "synchronizeWaypoint" "triggerActivated" "triggerActivation" "triggerArea" "triggerAttachedVehicle" "triggerAttachObject" "triggerAttachVehicle" "triggerInterval" "triggerStatements" "triggerText" "triggerTimeout" "triggerTimeoutCurrent" "triggerType" ))
+        (group (or "createTrigger" "inArea" "inAreaArray" "list" "setEffectCondition" "setMusicEffect" "setRadioMsg" "setSoundEffect" "setTitleEffect" "setTriggerActivation" "setTriggerArea" "setTriggerInterval" "setTriggerStatements" "setTriggerText" "setTriggerTimeout" "setTriggerType" "synchronizedTriggers" "synchronizedWaypoints" "synchronizeTrigger" "synchronizeWaypoint" "triggerActivated" "triggerActivation" "triggerArea" "triggerAttachedVehicle" "triggerAttachObject" "triggerAttachVehicle" "triggerInterval" "triggerStatements" "triggerText" "triggerTimeout" "triggerTimeoutCurrent" "triggerType" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Turrets
@@ -439,7 +439,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Variables
 (defconst arma-commands-variables
     (rx (or bol space "," "[" "{" "(")
-        (group (or "addPublicVariableEventHandler" "allVariables" "and" "configNull" "diaryRecordNull" "displayNull" "false" "getFSMVariable" "getVariable" "isEqualTo" "isEqualType" "isEqualTypeAll" "isEqualTypeAny" "isEqualTypeArray" "isEqualTypeParams" "isFinal" "isMissionProfileNamespaceLoaded" "isNil" "isNotEqualTo" "isNull" "localNamespace" "locationNull" "missionNamespace" "missionProfileNamespace" "netObjNull" "nil" "not" "objNull" "or" "param" "params" "parsingNamespace" "private" "profileNamespace" "publicVariable" "publicVariableClient" "publicVariableServer" "saveMissionProfileNamespace" "saveProfileNamespace" "saveVar" "scriptNull" "serverNamespace" "setVariable" "taskNull" "true" "typeName" "uiNamespace" ))
+        (group (or "a_greater_b" "a_hash_b" "a_less_b" "a_or_b" "addPublicVariableEventHandler" "allVariables" "and" "configNull" "diaryRecordNull" "displayNull" "false" "getFSMVariable" "getVariable" "isEqualTo" "isEqualType" "isEqualTypeAll" "isEqualTypeAny" "isEqualTypeArray" "isEqualTypeParams" "isFinal" "isMissionProfileNamespaceLoaded" "isNil" "isNotEqualTo" "isNull" "localNamespace" "locationNull" "missionNamespace" "missionProfileNamespace" "netObjNull" "nil" "not" "objNull" "or" "param" "params" "parsingNamespace" "private" "profileNamespace" "publicVariable" "publicVariableClient" "publicVariableServer" "saveMissionProfileNamespace" "saveProfileNamespace" "saveVar" "scriptNull" "serverNamespace" "setVariable" "taskNull" "true" "typeName" "uiNamespace" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Vehicle_in_Vehicle_Transport
@@ -451,7 +451,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Vehicle_Inventory
 (defconst arma-commands-vehicle-inventory
     (rx (or bol space "," "[" "{" "(")
-        (group (or "getFuelCargo" "addItemCargo" "addItemCargoGlobal" "addMagazineAmmoCargo" "addWeapon" "addWeaponGlobal" "addWeaponWithAttachmentsCargo" "addWeaponWithAttachmentsCargoGlobal" "currentMagazine" "currentMagazineDetail" "everyContainer" "getAmmoCargo" "getFuelCargo" "getItemCargo" "getMagazineCargo" "getRepairCargo" "getWeaponCargo" "itemCargo" "magazineCargo" "magazines" "magazinesAmmo" "magazinesAmmoCargo" "magazinesAmmoFull" "magazinesDetail" "removeWeapon" "removeWeaponAttachmentCargo" "removeWeaponCargo" "removeWeaponGlobal" "setAmmo" "setAmmoCargo" "setFuelCargo" "setRepairCargo" "setVehicleAmmo" "setVehicleAmmoDef" "weaponAccessoriesCargo" "weaponCargo" "weapons" "weaponsItems" "weaponsItemsCargo" ))
+        (group (or "addItemCargo" "addItemCargoGlobal" "addMagazineAmmoCargo" "addWeapon" "addWeaponGlobal" "addWeaponWithAttachmentsCargo" "addWeaponWithAttachmentsCargoGlobal" "currentMagazine" "currentMagazineDetail" "everyContainer" "getAmmoCargo" "getFuelCargo" "getItemCargo" "getMagazineCargo" "getRepairCargo" "getWeaponCargo" "itemCargo" "magazineCargo" "magazines" "magazinesAmmo" "magazinesAmmoCargo" "magazinesAmmoFull" "magazinesDetail" "removeWeapon" "removeWeaponAttachmentCargo" "removeWeaponCargo" "removeWeaponGlobal" "setAmmo" "setAmmoCargo" "setFuelCargo" "setRepairCargo" "setVehicleAmmo" "setVehicleAmmoDef" "weaponAccessoriesCargo" "weaponCargo" "weapons" "weaponsItems" "weaponsItemsCargo" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Vehicle_Loadouts
@@ -463,7 +463,7 @@
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Waypoints
 (defconst arma-commands-waypoints
     (rx (or bol space "," "[" "{" "(")
-        (group (or "Waypoints" "addWaypoint" "copyWaypoints" "createGuardedPoint" "currentWaypoint" "customWaypointPosition" "deleteWaypoint" "enableUAVWaypoints" "getWPPos" "lockWP" "setCurrentWaypoint" "setMusicEffect" "setSoundEffect" "setTitleEffect" "setWaypointBehaviour" "setWaypointCombatMode" "setWaypointCompletionRadius" "setWaypointDescription" "setWaypointForceBehaviour" "setWaypointFormation" "setWaypointHousePosition" "setWaypointLoiterAltitude" "setWaypointLoiterRadius" "setWaypointLoiterType" "setWaypointName" "setWaypointPosition" "setWaypointScript" "setWaypointSpeed" "setWaypointStatements" "setWaypointTimeout" "setWaypointType" "setWaypointVisible" "setWPPos" "showWaypoint" "showWaypoints" "synchronizedWaypoints" "synchronizeTrigger" "synchronizeWaypoint" "waypointAttachedObject" "waypointAttachedVehicle" "waypointAttachObject" "waypointAttachVehicle" "waypointBehaviour" "waypointCombatMode" "waypointCompletionRadius" "waypointDescription" "waypointForceBehaviour" "waypointFormation" "waypointHousePosition" "waypointLoiterAltitude" "waypointLoiterRadius" "waypointLoiterType" "waypointName" "waypointPosition" "waypoints" "waypointScript" "waypointsEnabledUAV" "waypointShow" "waypointSpeed" "waypointStatements" "waypointTimeout" "waypointTimeoutCurrent" "waypointType" "waypointVisible" ))
+        (group (or "addWaypoint" "copyWaypoints" "createGuardedPoint" "currentWaypoint" "customWaypointPosition" "deleteWaypoint" "enableUAVWaypoints" "getWPPos" "lockWP" "setCurrentWaypoint" "setMusicEffect" "setSoundEffect" "setTitleEffect" "setWaypointBehaviour" "setWaypointCombatMode" "setWaypointCompletionRadius" "setWaypointDescription" "setWaypointForceBehaviour" "setWaypointFormation" "setWaypointHousePosition" "setWaypointLoiterAltitude" "setWaypointLoiterRadius" "setWaypointLoiterType" "setWaypointName" "setWaypointPosition" "setWaypointScript" "setWaypointSpeed" "setWaypointStatements" "setWaypointTimeout" "setWaypointType" "setWaypointVisible" "setWPPos" "showWaypoint" "showWaypoints" "synchronizedWaypoints" "synchronizeTrigger" "synchronizeWaypoint" "waypointAttachedObject" "waypointAttachedVehicle" "waypointAttachObject" "waypointAttachVehicle" "waypointBehaviour" "waypointCombatMode" "waypointCompletionRadius" "waypointDescription" "waypointForceBehaviour" "waypointFormation" "waypointHousePosition" "waypointLoiterAltitude" "waypointLoiterRadius" "waypointLoiterType" "waypointName" "waypointPosition" "waypoints" "waypointScript" "waypointsEnabledUAV" "waypointShow" "waypointSpeed" "waypointStatements" "waypointTimeout" "waypointTimeoutCurrent" "waypointType" "waypointVisible" ))
     (or space "," "]" "}" ")" ";" )))
 
 ;; Parsing scripting commands from https://community.bistudio.com/wiki/Category:Command_Group:_Weapon_Pool

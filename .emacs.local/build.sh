@@ -79,7 +79,8 @@ for i in "${!links[@]}"; do
     prog "$i" "$links_size" "building arma-mode.el"
     target=$(curl -s $url${links[$i]})
     printf "\n;; Parsing scripting commands from $url${links[$i]}\n" >> arma-mode.el 
-    commands=($(echo $target | grep -o -E 'title="[A-Za-z]+"' | sed -n 's/^.*"\(.*\)"$/"\1"/p'))
+    # commands=($(echo $target | grep -o -E 'title="[A-Za-z]+"' | sed -n 's/^.*"\(.*\)"$/"\1"/p'))
+    commands=($(echo $target | grep -Eoi '<li><a [^>]+>' | grep -Eoi "href=\"/wiki/[A-Za-z_]+\"" | sed -n 's/^href="\/wiki\/\(.*\)"$/"\1"/p'))
     group_name=$(echo ${links[$i]}  |sed -n 's/.*:_\(.*\)$/\1/p' | tr "[:upper:]" "[:lower:]" | tr -d '(),' | tr "_" "-")
     const_names+=($group_name)
     printf "(defconst arma-commands-${const_names[$i]}\n" >> arma-mode.el
