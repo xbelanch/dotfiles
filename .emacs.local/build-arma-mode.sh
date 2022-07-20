@@ -84,9 +84,9 @@ for i in "${!links[@]}"; do
     group_name=$(echo ${links[$i]}  |sed -n 's/.*:_\(.*\)$/\1/p' | tr "[:upper:]" "[:lower:]" | tr -d '(),' | tr "_" "-")
     const_names+=($group_name)
     printf "(defconst arma-commands-${const_names[$i]}\n" >> arma-mode.el
-    echo "    (rx (or bol space \",\" \"[\" \"{\" \"(\")"$'\n'"        (group (or ${commands[@]} ))" >> arma-mode.el
+    echo "    (rx (or bol space \",\" \"!\" \"[\" \"{\" \"(\")"$'\n'"        (group (or ${commands[@]} ))" >> arma-mode.el
     cat >> arma-mode.el << '_EOF'
-    (or space "," "]" "}" ")" ";" )))
+    (or space "," "[" "]" "{" "}" "(" ")" ";" "!")))
 _EOF
 done
 

@@ -96,6 +96,7 @@
 
 ;; Ido
 (xba/require-package 'ido-completing-read+)
+(xba/require-package 'smex)
 (ido-mode 1)
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
@@ -207,7 +208,7 @@
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
-;; Set custom default compile command 
+;; Set custom default compile command
 (setq compile-command "./build.sh")
 
 ;; Compile buffer to show in a horizontal buffer
@@ -251,6 +252,7 @@
 (xba/require-package 'typescript-mode)
 (xba/require-package 'olivetti)
 (xba/require-package 'man)
+(xba/require-package 'json)
 
 ;; Display line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
@@ -289,7 +291,7 @@
  ;; If there is more than one, they won't work right.
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smex smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
+   '(json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
