@@ -51,6 +51,8 @@
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
+;; Jump into *compilation* buffer after the compilation ending
+(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 ;; Stolen from @tsoding's dotfiles (https://github.com/rexim/dotfiles/blob/a529f79ffe3bac19fe1ce842c3296ad792757df7/.emacs.rc/misc-rc.el#L120)
 (defun rc/duplicate-line ()
@@ -269,6 +271,12 @@
 (xba/require-package 'expand-region)
 (global-set-key (kbd "C-;") 'er/expand-region)
 
+;; Stolen from
+;; https://emacs.stackexchange.com/questions/10348/revert-buffer-discard-unsaved-changes-without-y-n-prompt
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
+
 ;; Custom keybindings
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z") 'undo)
@@ -283,12 +291,15 @@
 (global-set-key (kbd "C-e") 'mwim-end)
 ;; C-u before of execute helm-ag to change base directory
 (global-set-key (kbd "C-c h s") 'helm-ag)
+(global-set-key (kbd "C-c r") 'revert-buffer-no-confirm)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
    '(json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
