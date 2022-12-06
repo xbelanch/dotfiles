@@ -71,7 +71,8 @@
 
 ;; Appareance and Theme
 (xba/require-package 'zenburn-theme)
-(load-theme 'zenburn t)
+(xba/require-package 'gruber-darker-theme)
+(load-theme 'gruber-darker t)
 (add-to-list 'default-frame-alist '(font . "Iosevka-18"))
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -311,3 +312,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)
