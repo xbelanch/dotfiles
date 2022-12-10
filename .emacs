@@ -11,6 +11,10 @@
 (require 'package)
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")))
 
+(add-to-list 'package-archives
+             (cons "gnu-devel" "https://elpa.gnu.org/devel/")
+             t)
+
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -229,7 +233,7 @@
 (add-hook 'arma-mode-hook 'my-arma-mode-faces)
 (add-hook 'arma-mode-hook 'xba/set-up-whitespace-handling)
 
-(add-to-list 'load-path "~/.emacs.local/whitespace4r.el/")
+(add-to-list 'load-path "~/.emacs.local")
 (require 'whitespace4r)
 
 ;; Enable whitespace4r
