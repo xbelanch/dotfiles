@@ -77,7 +77,7 @@ HIST_STAMPS="%H:%M:%S %d/%m/%Y"
 # Add wisely, as too many plugins slow down shell startup.
 
 # Install/update fzf
-if ! command -v fzf &> /dev/null 
+if [ ! command -v fzf &> /dev/null ] && [ ! -d  "~/.fzf" ]
 then
     echo "fzf is not installed. Proceed"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
