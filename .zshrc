@@ -150,14 +150,25 @@ path+=("$HOME/.local/bin")
 alias git='LANG=en_GB git'
 
 # Ruby env
+if [ -x "$(command -v ruby)" ]; then
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
+fi
+
+# node.js env
+if [ -x "$(command -v nvm)" ]; then
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Go env
+if [ -x "$(command -v go)" ]; then
 export PATH=$PATH:/usr/local/go/bin
+fi
 
+# Ruby version manager
+if [ -x "$(command -v go)" ]; then
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+fi
