@@ -98,9 +98,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH
-export MANPATH=/usr/local/texlive/2021/texmf-dist/doc/man:/usr/local/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2021/texmf-dist/doc/info:$INFOPATH
+export PATH=/usr/local/texlive/2022/bin/x86_64-linux:$PATH
+export MANPATH=/usr/local/texlive/2022/texmf-dist/doc/man:/usr/local/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2022/texmf-dist/doc/info:$INFOPATH
 
 # You may need to manually set your language environment
 export LANG="ca_ES.UTF-8"
@@ -171,10 +171,11 @@ fi
 # node.js env
 export NVM_DIR="$HOME/.nvm"
 if [ -d $NVM_DIR ]; then
-    echo "nvm dir found"
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+else
+    echo "NVM not found"
 fi
 
 # Go env
