@@ -82,7 +82,8 @@ then
     echo "fzf is not installed. Proceed"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
-    export PATH="$PATH:~/.fzf/bin"
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    # export PATH="$PATH:~/.fzf/bin"
 # else
     # Do this for update
     # cd ~/.fzf && git pull && ./install
@@ -188,4 +189,3 @@ if [ -x "$(command -v go)" ]; then
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
