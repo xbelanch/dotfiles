@@ -163,12 +163,6 @@ path+=("$HOME/.local/bin")
 # git output in english, please
 alias git='LANG=en_GB git'
 
-# Ruby env
-if [ -x "$(command -v ruby)" ]; then
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
-fi
-
 # node.js env
 export NVM_DIR="$HOME/.nvm"
 if [ -d $NVM_DIR ]; then
@@ -179,13 +173,11 @@ else
     echo "NVM not found"
 fi
 
-# Go env
-if [ -x "$(command -v go)" ]; then
-export PATH=$PATH:/usr/local/go/bin
-fi
-
 # Ruby version manager
-if [ -x "$(command -v go)" ]; then
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Ruby Gems
+if [ -x "$(command -v ruby)" ]; then
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 fi
