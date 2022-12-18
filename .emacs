@@ -303,6 +303,10 @@
 (setq default-frame-alist `((cursor-color . "#FFFF00")
                             ,@default-frame-alist))
 
+
+;; Set python3
+(setq python-shell-interpreter "/usr/bin/python3")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
