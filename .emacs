@@ -282,6 +282,9 @@
   "Revert buffer without confirmation."
   (interactive) (revert-buffer t t))
 
+;; Move text
+(xba/require-package 'move-text)
+
 ;; Custom keybindings
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z") 'undo)
