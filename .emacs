@@ -190,6 +190,16 @@
 (setq helm-ag-base-command "ag --nocolor --ignore-case --literal --line-number --column --stats --hidden --nogroup --ignore .git")
 ;; @INFO: C-z disable autocompletion when you do find-file command
 
+;; Multiple cursors
+;; @BUG: Thrown warnings since last update!
+(xba/require-package 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+
 ;; Company
 (xba/require-package 'company)
 (global-company-mode)
@@ -205,15 +215,6 @@
 (show-smartparens-global-mode +1)
 (add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
 (add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
-
-;; Multiple cursors
-(xba/require-package 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->")         'mc/mark-next-like-this)
-(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
-(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
-(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 ;; Set custom default compile command
 (setq compile-command "./build.sh")
@@ -320,7 +321,7 @@
    '("a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim multiple-cursors move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode company-c-headers anzu ace-window))
+   '(ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
