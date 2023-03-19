@@ -29,6 +29,13 @@
 .config/htop/
 .config/mimeapps.list
 .config/gtk*/*
+.config/Raspberry Pi/
+.config/VintagestoryData/
+.config/fontforge/
+.config/karboncalligraphyrc
+.config/kritadisplayrc
+.config/kritarc
+.config/libreoffice/
 .gitmodules
 .nano/search_history
 .config/gtk-2.0/gtkfilechooser.ini
