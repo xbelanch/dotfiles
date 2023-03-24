@@ -110,6 +110,8 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;; Dired
+(setq dired-listing-switches "-aBhlF --group-directories-first")
 ;; Custom function for duplicate files on Dired
 ;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
 (defun dired-duplicate-this-file ()

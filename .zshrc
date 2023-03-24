@@ -152,7 +152,7 @@ if [ "$WSLVER" = "2" ] && [ "$WSL" = "yes" ]; then
 	echo "You're running Linux under WSL-$WSLVER"
     echo "Set up X11 display forwarding and adjust GDK Scale"
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=0
+    export LIBGL_ALWAYS_INDIRECT=1
     export GDK_SCALE=1
     export GDK_DPI_SCALE=1
 fi

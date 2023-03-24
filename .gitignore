@@ -33,3 +33,5 @@
 .nano/search_history
 .config/gtk-2.0/gtkfilechooser.ini
 .config/gtk-3.0/settings.ini
+/.config/GIMP/
+/.config/libreoffice/
