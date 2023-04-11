@@ -323,7 +323,7 @@
    '("a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window))
+   '(ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window multiple-cursors company))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
