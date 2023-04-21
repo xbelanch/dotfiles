@@ -99,9 +99,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH=/usr/local/texlive/2022/bin/x86_64-linux:$PATH
-export MANPATH=/usr/local/texlive/2022/texmf-dist/doc/man:/usr/local/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2022/texmf-dist/doc/info:$INFOPATH
+export PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+export MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man:/usr/local/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info:$INFOPATH
 
 # You may need to manually set your language environment
 export LANG="ca_ES.UTF-8"
@@ -182,3 +182,7 @@ if [ -x "$(command -v ruby)" ]; then
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 fi
+
+# Emscripten
+export PATH="$PATH:$HOME/Sources/emsdk"
+export PATH="$PATH:$HOME/Sources/emsdk/upstream/emscripten"

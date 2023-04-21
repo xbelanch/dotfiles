@@ -10,4 +10,4 @@
 [init]
 	defaultBranch = main
 [core]
-	editor = /usr/bin/emacs
+	editor = /usr/bin/nano
