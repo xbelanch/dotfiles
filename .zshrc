@@ -151,10 +151,14 @@ fi
 if [ "$WSLVER" = "2" ] && [ "$WSL" = "yes" ]; then
 	echo "You're running Linux under WSL-$WSLVER"
     echo "Set up X11 display forwarding and adjust GDK Scale"
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export HOST_IP="$(ip route |awk '/^default/{print $3}')"
+    export DISPLAY=$HOST_IP:0
+    #export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=1
-    export GDK_SCALE=1
+    export GDK_SCALE=0
     export GDK_DPI_SCALE=1
+    #export HOST_IP="$(ip route |awk '/^default/{print $3}')"
+    #export DISPLAY="$HOST_IP:0.0"
 fi
 
 # Add .local/bin path

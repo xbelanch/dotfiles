@@ -43,20 +43,12 @@
 (global-set-key (kbd "C-c i m") 'imenu)
 
 (setq-default inhibit-splash-screen t
-              make-backup-files nil
+              make-backups-files nil
               tab-width 4
               indent-tabs-mode nil
-              compilation-scroll-output t
+              ;; compilation-scroll-output t
+              compilation-scroll-output 'first-error
               visible-bell (equal system-type 'windows-nt))
-
-;; Stolen from @tsoding's dotfiles (https://github.com/rexim/dotfiles/blob/a529f79ffe3bac19fe1ce842c3296ad792757df7/.emacs.rc/misc-rc.el#L14)
-(defun rc/colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
-;; Jump into *compilation* buffer after the compilation ending
-(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 ;; Stolen from @tsoding's dotfiles (https://github.com/rexim/dotfiles/blob/a529f79ffe3bac19fe1ce842c3296ad792757df7/.emacs.rc/misc-rc.el#L120)
 (defun rc/duplicate-line ()
@@ -111,7 +103,7 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; Dired
-(setq dired-listing-switches "-aBhlF --group-directories-first")
+;; (setq dired-listing-switches "-aBhlF --group-directories-first")
 ;; Custom function for duplicate files on Dired
 ;; Stolen from https://emacs.stackexchange.com/questions/60661/how-to-duplicate-a-file-in-dired
 (defun dired-duplicate-this-file ()
@@ -125,14 +117,6 @@
             new  (format "%s Copy (%d)" this ctr)))
      (dired-copy-file this new nil))
   (revert-buffer))
-
-;; Colorize compilation output
-(require 'ansi-color)
-(defun tsoding/colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'tsoding/colorize-compilation-buffer)
 
 ;; c-mode
 (setq-default c-basic-offset 4
@@ -218,12 +202,23 @@
 (add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
 (add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
 
-;; Set custom default compile command
+;; Compile
+(require 'compile)
+compilation-error-regexp-alist-alist
+(add-to-list 'compilation-error-regexp-alist
+             '("\\([a-zA-Z0-9\\.]+\\)(\\([0-9]+\\)\\(,\\([0-9]+\\)\\)?) \\(Warning:\\)?"
+               1 2 (4) (5)))
 (setq compile-command "./build.sh")
-
-;; Compile buffer to show in a horizontal buffer
-(setq split-width-threshold nil)
-(setq split-height-threshold 0)
+;; Stolen from @tsoding's dotfiles (https://github.com/rexim/dotfiles/blob/a529f79ffe3bac19fe1ce842c3296ad792757df7/.emacs.rc/misc-rc.el#L14)
+(require 'ansi-color)
+(defun rc/colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
+;; @INFO: Deprecated this because it splits the frames recursively 
+;; Jump into *compilation* buffer after the compilation ending
+;; (add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 ;; Load local files
 (add-to-list 'load-path "~/.emacs.local/")
@@ -304,6 +299,7 @@
 ;; C-u before of execute helm-ag to change base directory
 (global-set-key (kbd "C-c h s") 'helm-ag)
 (global-set-key (kbd "C-c r") 'revert-buffer-no-confirm)
+(global-set-key (kbd "C-c C-k") 'kill-compilation)
 
 ;; Fix disappearing cursor
 ;; found at: https://emacs.stackexchange.com/questions/71413/disappearing-cursor
@@ -329,7 +325,7 @@
    '("a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(figlet lorem-ipsum ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window multiple-cursors company))
+   '(ag figlet lorem-ipsum ripgrep smex json-mode s go-mode dockerfile-mode csharp-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window multiple-cursors company))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
