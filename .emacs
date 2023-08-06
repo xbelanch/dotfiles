@@ -220,6 +220,10 @@ compilation-error-regexp-alist-alist
 ;; Jump into *compilation* buffer after the compilation ending
 ;; (add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
+;; Compile buffer to show in a horizontal buffer
+(setq split-height-threshold 0)
+(setq split-width-threshold nil)
+
 ;; Load local files
 (add-to-list 'load-path "~/.emacs.local/")
 
