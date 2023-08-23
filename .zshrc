@@ -117,3 +117,9 @@ RANGER_LOAD_DEFAULT_RC=false
 
 # Start playerctl daemon
 if ! pgrep -x 'playerctld' &>/dev/null; then playerctld daemon &>/dev/null; fi
+
+# Ruby Gems
+if [ -x "$(command -v ruby)" ]; then
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+path+=("$GEM_HOME/bin")
+fi
