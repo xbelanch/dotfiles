@@ -42,3 +42,8 @@
 .config/gtk-3.0/settings.ini
 /.config/GIMP/
 /.config/libreoffice/
+.config/Thunar/
+.config/cataclysm-dda/
+.config/ksnip/
+.config/spotify/
+.config/xfce4/
