@@ -2,18 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/$USER/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# git clone https://github.com/dracula/zsh.git to install dracula theme
-ZSH_THEME="dracula"
-DRACULA_DISPLAY_TIME=1
-DRACULA_DISPLAY_CONTEXT=1
-DRACULA_ARROW_ICON="λ"
-unsetopt BEEP
+ZSH_THEME="gruber"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -28,14 +23,13 @@ unsetopt BEEP
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -50,8 +44,9 @@ unsetopt BEEP
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -75,20 +70,6 @@ HIST_STAMPS="%H:%M:%S %d/%m/%Y"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
-# Install/update fzf
-if [ ! command -v fzf &> /dev/null ] && [ ! -d  "~/.fzf" ]
-then
-    echo "fzf is not installed. Proceed"
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    # export PATH="$PATH:~/.fzf/bin"
-# else
-    # Do this for update
-    # cd ~/.fzf && git pull && ./install
-fi
-
 plugins=(
     git
     colored-man-pages
@@ -102,21 +83,18 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
 export MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man:/usr/local/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info:$INFOPATH
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG="ca_ES.UTF-8"
-export LC_ALL=
-export LANGUAGE=
-export C_CTYPE=
-export LC_NUMERIC=
-export LC_TIME=
+export LANG=ca_ES.UTF-8
+# export LC_ALL=ca_ES.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='nano'
+else
+    export EDITOR='nano'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -131,62 +109,11 @@ export LC_TIME=
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
 
-# Check first if you're running under WSL2
-# Stolen from: https://github.com/microsoft/WSL/issues/4555#issuecomment-711091232
-export WSL=no WSLVER=""
-if [[ "$(< /proc/version)" = *[Mm]icrosoft* ]]; then
-  WSL=yes
-  if [[ -e "/proc/config.gz" ]]; then WSLVER+="2"; else WSLVER+="1"; fi
-  if [[ -e "/dev/vsock" ]];      then WSLVER+="2"; else WSLVER+="1"; fi
-  if [[ -n "$WSL_INTEROP" ]];    then WSLVER+="2"; else WSLVER+="1"; fi
-  if [[ -d "/run/WSL" ]];        then WSLVER+="2"; else WSLVER+="1"; fi
-  if [[ -n "${WSLVER//1/}" && -n "${WSLVER//2/}" ]]; then
-    echo "WSL version detection got multiple answers ($WSLVER), time to update this code!"
-  fi
-  WSLVER="${WSLVER:0:1}"
-fi
-
-# If WSL2 is true, set up X11 display forwarding on WSL2
-# Stolen from: https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2/
-if [ "$WSLVER" = "2" ] && [ "$WSL" = "yes" ]; then
-	echo "You're running Linux under WSL-$WSLVER"
-    echo "Set up X11 display forwarding and adjust GDK Scale"
-    export HOST_IP="$(ip route |awk '/^default/{print $3}')"
-    export DISPLAY=$HOST_IP:0
-    #export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=1
-    export GDK_SCALE=0
-    export GDK_DPI_SCALE=1
-    #export HOST_IP="$(ip route |awk '/^default/{print $3}')"
-    #export DISPLAY="$HOST_IP:0.0"
-fi
-
 # Add .local/bin path
 path+=("$HOME/.local/bin")
 
-# git output in english, please
-alias git='LANG=en_GB git'
+# What is this?
+RANGER_LOAD_DEFAULT_RC=false
 
-# node.js env
-export NVM_DIR="$HOME/.nvm"
-if [ -d $NVM_DIR ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-else
-    echo "NVM not found. Create .nvm directory"
-    mkdir -v $HOME"/.nvm"
-fi
-
-# Ruby version manager
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Ruby Gems
-if [ -x "$(command -v ruby)" ]; then
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
-fi
-
-# Emscripten
-export PATH="$PATH:$HOME/Sources/emsdk"
-export PATH="$PATH:$HOME/Sources/emsdk/upstream/emscripten"
+# Start playerctl daemon
+if ! pgrep -x 'playerctld' &>/dev/null; then playerctld daemon &>/dev/null; fi

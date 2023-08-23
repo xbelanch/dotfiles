@@ -42,12 +42,13 @@
 (global-set-key (kbd "C-c p") 'find-file-at-point)
 (global-set-key (kbd "C-c i m") 'imenu)
 
+;; Turn Off Emacs Auto Backup~
+(setq make-backup-files nil)
+
 (setq-default inhibit-splash-screen t
-              make-backups-files nil
               tab-width 4
               indent-tabs-mode nil
-              ;; compilation-scroll-output t
-              compilation-scroll-output 'first-error
+              compilation-scroll-output t
               visible-bell (equal system-type 'windows-nt))
 
 ;; Stolen from @tsoding's dotfiles (https://github.com/rexim/dotfiles/blob/a529f79ffe3bac19fe1ce842c3296ad792757df7/.emacs.rc/misc-rc.el#L120)
@@ -69,7 +70,7 @@
 (xba/require-package 'zenburn-theme)
 (xba/require-package 'gruber-darker-theme)
 (load-theme 'gruber-darker t)
-(add-to-list 'default-frame-alist '(font . "Iosevka-18"))
+(add-to-list 'default-frame-alist '(font . "Iosevka Fixed-18"))
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -158,6 +159,7 @@
 (add-hook 'nasm-mode-hook 'xba/set-up-whitespace-handling)
 (add-hook 'go-mode-hook 'xba/set-up-whitespace-handling)
 (add-hook 'yaml-mode-hook 'xba/set-up-whitespace-handling)
+(add-hook 'before-save-hook 'xba/set-up-whitespace-handling)
 
 ;; @INFO: This makes invisible spaces
 (set-face-attribute 'whitespace-space nil :background nil :foreground "gray75")
@@ -215,7 +217,7 @@ compilation-error-regexp-alist-alist
   (toggle-read-only)
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
-(add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
+;; (add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
 ;; @INFO: Deprecated this because it splits the frames recursively 
 ;; Jump into *compilation* buffer after the compilation ending
 ;; (add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
@@ -228,12 +230,12 @@ compilation-error-regexp-alist-alist
 (add-to-list 'load-path "~/.emacs.local/")
 
 ;; major mode for arma scripting language
-(require 'arma-mode)
-(defun my-arma-mode-faces ()
-  (face-remap-add-relative 'font-lock-builtin-face '(:foreground "LightGoldenrod" :weight bold))
-  (face-remap-add-relative 'font-lock-keyword-face '(:foreground "light pink" :weight normal)))
-(add-hook 'arma-mode-hook 'my-arma-mode-faces)
-(add-hook 'arma-mode-hook 'xba/set-up-whitespace-handling)
+;; (require 'arma-mode)
+;; (defun my-arma-mode-faces ()
+;;   (face-remap-add-relative 'font-lock-builtin-face '(:foreground "LightGoldenrod" :weight bold))
+;;   (face-remap-add-relative 'font-lock-keyword-face '(:foreground "light pink" :weight normal)))
+;; (add-hook 'arma-mode-hook 'my-arma-mode-faces)
+;; (add-hook 'arma-mode-hook 'xba/set-up-whitespace-handling)
 
 (add-to-list 'load-path "~/.emacs.local")
 (require 'whitespace4r)
@@ -318,6 +320,7 @@ compilation-error-regexp-alist-alist
 ;; grabbed from: https://stackoverflow.com/questions/1545851/how-to-make-forward-word-backward-word-treat-underscore-as-part-of-a-word
 (modify-syntax-entry ?_ "w" c-mode-syntax-table)
 (modify-syntax-entry ?_ "w" markdown-mode-syntax-table)
+(modify-syntax-entry ?_ "w" typescript-mode-syntax-table)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -328,7 +331,7 @@ compilation-error-regexp-alist-alist
    '("a3e99dbdaa138996bb0c9c806bc3c3c6b4fd61d6973b946d750b555af8b7555b" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(ag figlet lorem-ipsum ripgrep smex json-mode s go-mode dockerfile-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window multiple-cursors company))
+   '(gdscript-mode ag figlet lorem-ipsum ripgrep smex json-mode s go-mode dockerfile-mode expand-region paredit zenburn-theme yasnippet yaml-mode typescript-mode smartparens rainbow-delimiters olivetti nasm-mode mwim move-text markdown-mode magit lua-mode js2-mode ido-completing-read+ helm-ag gruber-darker-theme graphviz-dot-mode glsl-mode anzu ace-window multiple-cursors company))
  '(whitespace-style
    '(face spaces tabs trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces

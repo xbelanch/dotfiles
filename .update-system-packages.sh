@@ -1,24 +1,33 @@
 #!/bin/bash
 
-purple=$(tput setaf 13)
-red=$(tput setaf 9)
-yellow=$(tput setaf 11)
-green=$(tput setaf 10)
-blue=$(tput setaf 5)
+bold=$(tput bold)
+purple=$(tput setaf 5)
+red=$(tput setaf 1)
+yellow=$(tput setaf 3)
+green=$(tput setaf 2)
+blue=$(tput setaf 4)
 normal=$(tput sgr0)
 
 upgrade_arch_system() {
-    printf "${yellow}Upgrading Arch system with YAY...\n"
+    printf "\n${bold}${green}=====================================${normal}\n"
+    printf "${bold}${green}Upgrading Arch system with YAY...${normal}\n"
+    printf "${bold}${green}=====================================${normal}\n"
     yay -Yc
     yay -Syu --devel --timeupdate
     yay -Ps
-    printf "...Done upgrading the system${normal}\n"
+    printf "${bold}${green}=====================================${normal}\n"
+    printf "${bold}${green}...Done upgrading the system${normal}\n"
+    printf "${bold}${green}=====================================${normal}\n"
 }
 
 remove_arch_cache() {
-    printf "\n${red}Removing all the unnecessary stuff...\n"
-    yay -Scc
-    printf "\nDone${normal}"
+    printf "\n${bold}${red}=====================================${normal}\n"
+    printf "${bold}${red}Removing all the unnecessary stuff...${normal}\n"
+    printf "${bold}${red}=====================================${normal}\n"
+    yes | LC_ALL=en_US.UTF-8 yay -Scc
+    printf "\n${bold}${red}=====================================${normal}\n"
+    printf "${bold}${red}Done${normal}\n"
+    printf "${bold}${red}=====================================${normal}\n"
 }
 
 upgrade_debian_system() {
@@ -28,20 +37,20 @@ upgrade_debian_system() {
 }
 
 check_outdated_rubygems() {
-    if which gem 2>&1 >/dev/null; then
-        printf "\n${purple}Update ruby gems${normal}\n"
+    if command -v gem &>/dev/null; then
+        printf "\n${bold}${green}Update ruby gems${normal}\n"
         gem update
     else
-        printf "${red}Ruby gems is not installed on your system${normal}\n"
+        printf "\n${bold}${red}Ruby gems is not installed on your system${normal}\n"
     fi
 }
 
 check_outdated_npm_packages() {
-    if which npm 2>&1 >/dev/null; then
-        printf "\nCheck outdated global npm installed packages\n"
+    if command -v npm &>/dev/null; then
+        printf "\n${bold}${yellow}Check outdated global npm installed packages${normal}\n"
         npm outdated -g
     else
-           printf "${red}NPM is not installed on your system${normal}\n"
+           printf "\n${bold}${red}NPM is not installed on your system${normal}\n"
     fi
 }
 
