@@ -140,6 +140,9 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
 
+;; lsp-gdscript-port
+(setq lsp-gdscript-port 6008)
+
 ;; Display line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
