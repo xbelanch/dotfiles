@@ -218,7 +218,7 @@ compilation-error-regexp-alist-alist
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
 ;; (add-hook 'compilation-filter-hook 'rc/colorize-compilation-buffer)
-;; @INFO: Deprecated this because it splits the frames recursively 
+;; @INFO: Deprecated this because it splits the frames recursively
 ;; Jump into *compilation* buffer after the compilation ending
 ;; (add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
@@ -257,7 +257,6 @@ compilation-error-regexp-alist-alist
 (xba/require-package 'lua-mode)
 (xba/require-package 'graphviz-dot-mode)
 (xba/require-package 'markdown-mode)
-(xba/require-package 'dockerfile-mode)
 (xba/require-package 'go-mode)
 (xba/require-package 'typescript-mode)
 (xba/require-package 'olivetti)
@@ -292,7 +291,6 @@ compilation-error-regexp-alist-alist
 ;; Custom keybindings
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-q") 'kill-this-buffer)
 (global-set-key (kbd "<S-return>") (kbd "C-e C-m"))
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-p") 'move-text-up)
@@ -305,6 +303,7 @@ compilation-error-regexp-alist-alist
 (global-set-key (kbd "C-c h s") 'helm-ag)
 (global-set-key (kbd "C-c r") 'revert-buffer-no-confirm)
 (global-set-key (kbd "C-c C-k") 'kill-compilation)
+(global-set-key (kbd "C-ç") 'kill-this-buffer)
 
 ;; Fix disappearing cursor
 ;; found at: https://emacs.stackexchange.com/questions/71413/disappearing-cursor
