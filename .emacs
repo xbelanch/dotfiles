@@ -227,16 +227,6 @@ compilation-error-regexp-alist-alist
 (setq split-width-threshold nil)
 
 ;; Load local files
-(add-to-list 'load-path "~/.emacs.local/")
-
-;; major mode for arma scripting language
-;; (require 'arma-mode)
-;; (defun my-arma-mode-faces ()
-;;   (face-remap-add-relative 'font-lock-builtin-face '(:foreground "LightGoldenrod" :weight bold))
-;;   (face-remap-add-relative 'font-lock-keyword-face '(:foreground "light pink" :weight normal)))
-;; (add-hook 'arma-mode-hook 'my-arma-mode-faces)
-;; (add-hook 'arma-mode-hook 'xba/set-up-whitespace-handling)
-
 (add-to-list 'load-path "~/.emacs.local")
 (require 'whitespace4r)
 
@@ -263,6 +253,10 @@ compilation-error-regexp-alist-alist
 (xba/require-package 'man)
 (xba/require-package 'json)
 (xba/require-package 'ripgrep)
+
+;; Configure Olivetti width
+;; stolen from: https://www.reddit.com/r/emacs/comments/mdjt6x/trouble_configuring_olivetti_mode/
+(add-hook 'olivetti-mode-on-hook (lambda () (olivetti-set-width 100)))
 
 ;; Display line numbers
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
